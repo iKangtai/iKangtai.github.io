@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="此文档用于描述 Shecare SaaS SDK 智能分析的 HTTP 接口，接口参数里的 appId 和 sign 签名算法里的 app_secret 由爱康泰工作人员提供，有任何问题请联系：luopk@ikangtai.com。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Shecare SaaS SDK 智能分析 HTTP 接口">
+<meta property="og:url" content="https://ikangtai.github.io/2018/07/02/Shecare SaaS SDK Analysis HTTP/index.html">
+<meta property="og:site_name" content="爱康泰文档发布平台">
+<meta property="og:description" content="此文档用于描述 Shecare SaaS SDK 智能分析的 HTTP 接口，接口参数里的 appId 和 sign 签名算法里的 app_secret 由爱康泰工作人员提供，有任何问题请联系：luopk@ikangtai.com。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-12-25T07:46:29.445Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Shecare SaaS SDK 智能分析 HTTP 接口">
+<meta name="twitter:description" content="此文档用于描述 Shecare SaaS SDK 智能分析的 HTTP 接口，接口参数里的 appId 和 sign 签名算法里的 app_secret 由爱康泰工作人员提供，有任何问题请联系：luopk@ikangtai.com。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://ikangtai.github.io/2018/07/02/Shecare SaaS SDK Analysis HTTP/"/>
+
+
+
+
+
+  <title>Shecare SaaS SDK 智能分析 HTTP 接口 | 爱康泰文档发布平台</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">爱康泰文档发布平台</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ikangtai.github.io/2018/07/02/Shecare SaaS SDK Analysis HTTP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="iKangtai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="爱康泰文档发布平台">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Shecare SaaS SDK 智能分析 HTTP 接口</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-02T14:37:45+08:00">
+                2018-07-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>此文档用于描述 Shecare SaaS SDK 智能分析的 HTTP 接口，接口参数里的 appId 和 sign 签名算法里的 app_secret 由爱康泰工作人员提供，有任何问题请联系：<a href="mailto:luopk@ikangtai.com" target="_blank" rel="noopener">luopk@ikangtai.com</a>。</p>
+<a id="more"></a> 
+<h3 id="sign-签名算法"><a href="#sign-签名算法" class="headerlink" title="sign 签名算法"></a>sign 签名算法</h3><p>md5(app_secret+ts+ikangtai) ==&gt; 32位大写 sign，比如：</p>
+<ul>
+<li>app_secret 为：FKJKSDlSLKLSD（此为示例，实际值由爱康泰工作人员提供）</li>
+<li>ts=1518232381，当前的 Unix 时间戳，以秒为单位</li>
+<li>计算 md5(FKJKSDlSLKLSD1518232381ikangtai)</li>
+<li>结果为：BE64E196C20D91D3D75DACFEB9800272</li>
+</ul>
+<h3 id="1-7-查看分析结果"><a href="#1-7-查看分析结果" class="headerlink" title="1.7 查看分析结果"></a>1.7 查看分析结果</h3><blockquote>
+<p><strong><strong>正式URI</strong></strong>:<br>/custom/fam/type2/historyAnalysis?appId=thirdpartappid&amp;signs=BE64E196C20D91D3D75DACFEB9800272&amp;ts=1518232381&amp;sessionId=BE64E196C20D91D3D75DACFEB9800272<br><strong><strong>测试URI</strong></strong>:<br>/custom/fam/type2/historyAnalysis?appId=thirdpartappid&amp;signs=BE64E196C20D91D3D75DACFEB9800272&amp;ts=1518232381&amp;sessionId=BE64E196C20D91D3D75DACFEB9800272</p>
+</blockquote>
+<p>URI 参数说明：</p>
+<ul>
+<li>appId 由爱康泰工作人员提供</li>
+<li>signs 由 sign 签名算法计算</li>
+<li>ts 为当前 Unix 时间戳，需要和 sign 签名算法里的 ts 保持一致</li>
+<li>sessionId 当前为固定值</li>
+</ul>
+<p><strong>postbody</strong>:<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="attr">"userId"</span>:<span class="number">15315384601036</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>postbody 请求字段说明: </p>
+<ul>
+<li>userId: 需要查询的第三方用户 Id</li>
+</ul>
+<p><strong>result</strong>:<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"code"</span>:<span class="number">200</span>, </span><br><span class="line">    <span class="attr">"message"</span>: <span class="literal">null</span>, </span><br><span class="line">    <span class="attr">"data"</span>: &#123;</span><br><span class="line">        <span class="attr">"listAll"</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"list"</span>: [</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="attr">"state"</span>: <span class="string">"normal"</span>, </span><br><span class="line">                        <span class="attr">"msg"</span>: <span class="string">"测温时间不规律，大部分在10点和11之间。"</span>, </span><br><span class="line">                        <span class="attr">"guanjian"</span>: <span class="literal">null</span>, </span><br><span class="line">                        <span class="attr">"url"</span>: <span class="literal">null</span></span><br><span class="line">                    &#125;, </span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="attr">"state"</span>: <span class="string">"bigwave"</span>, </span><br><span class="line">                        <span class="attr">"msg"</span>: <span class="string">"到目前体温测量一切正常，加油哦！"</span>, </span><br><span class="line">                        <span class="attr">"guanjian"</span>: <span class="literal">null</span>, </span><br><span class="line">                        <span class="attr">"url"</span>: <span class="literal">null</span></span><br><span class="line">                    &#125;, </span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="attr">"state"</span>: <span class="string">"pregnant"</span>, </span><br><span class="line">                        <span class="attr">"msg"</span>: <span class="string">"根据基础体温，确定排卵日为2018年3月1日。"</span>, </span><br><span class="line">                        <span class="attr">"guanjian"</span>: <span class="literal">null</span>, </span><br><span class="line">                        <span class="attr">"url"</span>: <span class="literal">null</span></span><br><span class="line">                    &#125;, </span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="attr">"state"</span>: <span class="string">"noyellow"</span>, </span><br><span class="line">                        <span class="attr">"msg"</span>: <span class="string">"黄体升温幅度较低，速度较慢，疑似黄体功能不足。"</span>, </span><br><span class="line">                        <span class="attr">"guanjian"</span>: <span class="literal">null</span>, </span><br><span class="line">                        <span class="attr">"url"</span>: <span class="literal">null</span></span><br><span class="line">                    &#125;</span><br><span class="line">                ], </span><br><span class="line">                <span class="attr">"nowdate"</span>: <span class="string">"当前周期：2018年2月18日--今天"</span></span><br><span class="line">            &#125;, </span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"list"</span>: [</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="attr">"state"</span>: <span class="string">"normal"</span>, </span><br><span class="line">                        <span class="attr">"msg"</span>: <span class="string">"测温时间不规律，大部分在10点和11之间。"</span>, </span><br><span class="line">                        <span class="attr">"guanjian"</span>: <span class="literal">null</span>, </span><br><span class="line">                        <span class="attr">"url"</span>: <span class="literal">null</span></span><br><span class="line">                    &#125;, </span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="attr">"state"</span>: <span class="string">"bigwave"</span>, </span><br><span class="line">                        <span class="attr">"msg"</span>: <span class="string">"到目前体温测量一切正常，加油哦！"</span>, </span><br><span class="line">                        <span class="attr">"guanjian"</span>: <span class="literal">null</span>, </span><br><span class="line">                        <span class="attr">"url"</span>: <span class="literal">null</span></span><br><span class="line">                    &#125;, </span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="attr">"state"</span>: <span class="string">"pregnant"</span>, </span><br><span class="line">                        <span class="attr">"msg"</span>: <span class="string">"根据基础体温，确定排卵日为2018年1月29日。"</span>, </span><br><span class="line">                        <span class="attr">"guanjian"</span>: <span class="literal">null</span>, </span><br><span class="line">                        <span class="attr">"url"</span>: <span class="literal">null</span></span><br><span class="line">                    &#125;, </span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="attr">"state"</span>: <span class="string">"noyellow"</span>, </span><br><span class="line">                        <span class="attr">"msg"</span>: <span class="string">"黄体升温幅度较低，速度较慢，疑似黄体功能不足。"</span>, </span><br><span class="line">                        <span class="attr">"guanjian"</span>: <span class="literal">null</span>, </span><br><span class="line">                        <span class="attr">"url"</span>: <span class="literal">null</span></span><br><span class="line">                    &#125;, </span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="attr">"state"</span>: <span class="string">"noyellow"</span>, </span><br><span class="line">                        <span class="attr">"msg"</span>: <span class="string">"本周期黄体期长度为18。长度过长，正常黄体其长度为10-16天。"</span>, </span><br><span class="line">                        <span class="attr">"guanjian"</span>: <span class="literal">null</span>, </span><br><span class="line">                        <span class="attr">"url"</span>: <span class="literal">null</span></span><br><span class="line">                    &#125;</span><br><span class="line">                ], </span><br><span class="line">                <span class="attr">"nowdate"</span>: <span class="string">"历史周期：2018年1月1日--2018年2月17日"</span></span><br><span class="line">            &#125;, </span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"list"</span>: [</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="attr">"state"</span>: <span class="string">"normal"</span>, </span><br><span class="line">                        <span class="attr">"msg"</span>: <span class="string">"本周期无有效的基础体温。"</span>, </span><br><span class="line">                        <span class="attr">"guanjian"</span>: <span class="literal">null</span>, </span><br><span class="line">                        <span class="attr">"url"</span>: <span class="literal">null</span></span><br><span class="line">                    &#125;</span><br><span class="line">                ], </span><br><span class="line">                <span class="attr">"nowdate"</span>: <span class="string">"历史周期：2017年11月17日--2017年12月31日"</span></span><br><span class="line">            &#125;, </span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"list"</span>: [</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="attr">"state"</span>: <span class="string">"normal"</span>, </span><br><span class="line">                        <span class="attr">"msg"</span>: <span class="string">"本周期无有效的基础体温。"</span>, </span><br><span class="line">                        <span class="attr">"guanjian"</span>: <span class="literal">null</span>, </span><br><span class="line">                        <span class="attr">"url"</span>: <span class="literal">null</span></span><br><span class="line">                    &#125;</span><br><span class="line">                ], </span><br><span class="line">                <span class="attr">"nowdate"</span>: <span class="string">"历史周期：2017年10月1日--2017年11月16日"</span></span><br><span class="line">            &#125;, </span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"list"</span>: [</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="attr">"state"</span>: <span class="string">"normal"</span>, </span><br><span class="line">                        <span class="attr">"msg"</span>: <span class="string">"周期长度最长48天，最短45天，平均周期长度47,周期长度稳定!"</span>, </span><br><span class="line">                        <span class="attr">"guanjian"</span>: <span class="literal">null</span>, </span><br><span class="line">                        <span class="attr">"url"</span>: <span class="literal">null</span></span><br><span class="line">                    &#125;, </span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="attr">"state"</span>: <span class="string">"normal"</span>, </span><br><span class="line">                        <span class="attr">"msg"</span>: <span class="string">"经期长度最长6天，最短3天，平均经期长度4,经期长度稳定。"</span>, </span><br><span class="line">                        <span class="attr">"guanjian"</span>: <span class="literal">null</span>, </span><br><span class="line">                        <span class="attr">"url"</span>: <span class="literal">null</span></span><br><span class="line">                    &#125;</span><br><span class="line">                ], </span><br><span class="line">                <span class="attr">"nowdate"</span>: <span class="string">"整体周期分析："</span></span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>备注：<br>当 code 非200时，说明内部分析出错，此时会在 message 中返回错误信息；<br>listall 中的数据主要用到了：nowdate 和 message，nowdate 表示该段数据所处的周期， message 表示对这段周期分析的结果。 </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/27/Shecare iOS SaaS SDK/" rel="next" title="Shecare iOS SaaS SDK 开发文档">
+                <i class="fa fa-chevron-left"></i> Shecare iOS SaaS SDK 开发文档
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/25/Shecare-Saas-LHPaper-Client-SDK-Image/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">iKangtai</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#sign-签名算法"><span class="nav-number">1.</span> <span class="nav-text">sign 签名算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7-查看分析结果"><span class="nav-number">2.</span> <span class="nav-text">1.7 查看分析结果</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">iKangtai</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

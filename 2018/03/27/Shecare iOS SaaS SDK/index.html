@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Demo 地址https://github.com/iKangtai/ShecareSDKDemo-iOS.git 类定义核心服务类：ShecareService">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Shecare iOS SaaS SDK 开发文档">
+<meta property="og:url" content="https://ikangtai.github.io/2018/03/27/Shecare iOS SaaS SDK/index.html">
+<meta property="og:site_name" content="爱康泰文档发布平台">
+<meta property="og:description" content="Demo 地址https://github.com/iKangtai/ShecareSDKDemo-iOS.git 类定义核心服务类：ShecareService">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-12-25T07:46:29.445Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Shecare iOS SaaS SDK 开发文档">
+<meta name="twitter:description" content="Demo 地址https://github.com/iKangtai/ShecareSDKDemo-iOS.git 类定义核心服务类：ShecareService">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://ikangtai.github.io/2018/03/27/Shecare iOS SaaS SDK/"/>
+
+
+
+
+
+  <title>Shecare iOS SaaS SDK 开发文档 | 爱康泰文档发布平台</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">爱康泰文档发布平台</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ikangtai.github.io/2018/03/27/Shecare iOS SaaS SDK/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="iKangtai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="爱康泰文档发布平台">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Shecare iOS SaaS SDK 开发文档</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-27T14:39:45+08:00">
+                2018-03-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Demo-地址"><a href="#Demo-地址" class="headerlink" title="Demo 地址"></a>Demo 地址</h3><p><a href="https://github.com/iKangtai/ShecareSDKDemo-iOS.git" target="_blank" rel="noopener">https://github.com/iKangtai/ShecareSDKDemo-iOS.git</a></p>
+<h3 id="类定义"><a href="#类定义" class="headerlink" title="类定义"></a>类定义</h3><h4 id="核心服务类：ShecareService"><a href="#核心服务类：ShecareService" class="headerlink" title="核心服务类：ShecareService"></a>核心服务类：ShecareService</h4><a id="more"></a> 
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">单例</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">shared</span>() -&gt; <span class="title">ShecareService</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">///  设置 <span class="title">SDK</span> 环境，可以不设置。默认是 线上环境 .<span class="title">release</span></span></span><br><span class="line"><span class="class"><span class="title">public</span> <span class="title">var</span> <span class="title">environment</span>: <span class="title">YCEnvironment</span> = .<span class="title">release</span></span></span><br></pre></td></tr></table></figure>
+<p>YCEnvironment 定义如下：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">///  SDK 使用的服务器环境</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">YCEnvironment</span>: <span class="title">Int</span> </span>&#123;</span><br><span class="line">    <span class="comment">///  正式服务器</span></span><br><span class="line">    <span class="keyword">case</span> release = <span class="number">0</span></span><br><span class="line">    <span class="comment">///  测试服务器</span></span><br><span class="line">    <span class="keyword">case</span> tester = <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="温度类：YCTemperatureModel"><a href="#温度类：YCTemperatureModel" class="headerlink" title="温度类：YCTemperatureModel"></a>温度类：YCTemperatureModel</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">构造方法</span></span><br><span class="line"><span class="comment">- parameters:</span></span><br><span class="line"><span class="comment">	- temperature: 温度</span></span><br><span class="line"><span class="comment">	- measureTime: 温度的测量时间。⚠️不能为空⚠️</span></span><br><span class="line"><span class="comment">	- deleted: 是否删除该温度。true 表示删除，false 表示不删除</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">convenience</span> <span class="keyword">public</span> <span class="keyword">init</span>(temperature: <span class="type">String</span>, measureTime date: <span class="type">NSDate</span>, deleted: <span class="type">Bool</span>)</span><br></pre></td></tr></table></figure>
+<p>属性列表：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">///  是否已删除</span><br><span class="line">public var deleted: Bool = false</span><br><span class="line">///  测温时间</span><br><span class="line">public var measureTime: NSDate?</span><br><span class="line">///  温度数据</span><br><span class="line">public var temperature: NSString = &quot;&quot;</span><br></pre></td></tr></table></figure></p>
+<h4 id="经期类：YCPeriodModel"><a href="#经期类：YCPeriodModel" class="headerlink" title="经期类：YCPeriodModel"></a>经期类：YCPeriodModel</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">构造方法</span></span><br><span class="line"><span class="comment">- parameters:</span></span><br><span class="line"><span class="comment">	- date: 日期</span></span><br><span class="line"><span class="comment">	- period: 经期信息，1 表示经期开始，2 表示经期结束，0 表示删除经期或无经期信息。经期开始和结束应该成对出现</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">convenience</span> <span class="keyword">public</span> <span class="keyword">init</span>(date: <span class="type">NSDate</span>, period: <span class="type">Int</span>)</span><br></pre></td></tr></table></figure>
+<p>属性列表：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">///  记录日期</span><br><span class="line">public var date: NSDate?</span><br><span class="line">///  经期信息：1 表示经期开始，2 表示经期结束，0 表示删除经期或无经期信息。经期开始和结束应该成对出现</span><br><span class="line">public var period: Int = 0</span><br></pre></td></tr></table></figure></p>
+<h4 id="用户基础信息类：YCUserInfoModel"><a href="#用户基础信息类：YCUserInfoModel" class="headerlink" title="用户基础信息类：YCUserInfoModel"></a>用户基础信息类：YCUserInfoModel</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">构造方法</span></span><br><span class="line"><span class="comment">- parameters:</span></span><br><span class="line"><span class="comment">	- cycleLength: 周期长度</span></span><br><span class="line"><span class="comment">	- mensLength: 经期长度</span></span><br><span class="line"><span class="comment">	- birth：出生年月 </span></span><br><span class="line"><span class="comment">	- height：身高 cm</span></span><br><span class="line"><span class="comment">	- weight：体重 公斤</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">convenience</span> <span class="keyword">public</span> <span class="keyword">init</span>(cycleLength: <span class="type">Int</span>, mensLength: <span class="type">Int</span>, birth:<span class="type">String</span>,height:<span class="type">Int</span>,weight:<span class="type">Float</span>)</span><br></pre></td></tr></table></figure>
+<p>属性列表：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">///  周期长度，默认值 28</span><br><span class="line">public var cycleLength: Float = 28.0</span><br><span class="line">///  经期长度，默认值 5</span><br><span class="line">public var mensLength: Float = 5.0</span><br><span class="line">///  出生年月，默认值 </span><br><span class="line">public var birth: String = &quot;1995年1月&quot;</span><br><span class="line">///  身高，默认值 160</span><br><span class="line">public var height: Int = 160</span><br><span class="line">///  体重，默认值45</span><br><span class="line">public var weight: Float=45.2</span><br></pre></td></tr></table></figure></p>
+<h4 id="用户生理信息类：YCPhyModel"><a href="#用户生理信息类：YCPhyModel" class="headerlink" title="用户生理信息类：YCPhyModel"></a>用户生理信息类：YCPhyModel</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">构造方法</span></span><br><span class="line"><span class="comment">- parameters:</span></span><br><span class="line"><span class="comment">	- mucus: 白带</span></span><br><span class="line"><span class="comment">	- lh: LH值</span></span><br><span class="line"><span class="comment">	- hadSex：同房 </span></span><br><span class="line"><span class="comment">	- bUltra：B超 0 未记录，1确认不排卵，2，确认排卵</span></span><br><span class="line"><span class="comment">	- hormoneSix：激素六项</span></span><br><span class="line"><span class="comment">	- symptom：症状 0 未记录 </span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">convenience</span> <span class="keyword">public</span> <span class="keyword">init</span>(mucus: <span class="type">Int</span>, lh: <span class="type">Int</span>, hadSex：<span class="type">Int</span>,bUltra:<span class="type">Int</span>,hormoneSix:<span class="type">String</span>,symtom:<span class="type">Int</span>)</span><br></pre></td></tr></table></figure>
+<p>属性列表：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">///  白带，默认值0</span><br><span class="line">public var mucus: Int = 0</span><br><span class="line">///  LH，默认值 0</span><br><span class="line">public var lh: Int = 0</span><br><span class="line">///  同房，默认值 0 </span><br><span class="line">public var hadSex: Int = 0</span><br><span class="line">///  B超，默认值 </span><br><span class="line">public var bUltra: Int = 160</span><br><span class="line">///  激素六项，默认值null</span><br><span class="line">public var hormoneSix: String=&quot;以Json的形式组织相关的激素六项记录&quot;</span><br><span class="line">&#123;&quot;e2&quot;:300,&quot;fsh&quot;:14,&quot;lh&quot;:13,&quot;p&quot;:20,&quot;t&quot;:0.30,&quot;prl&quot;:0.14&#125;</span><br><span class="line">/// 症状，默认0</span><br><span class="line">public var symptom: Int = 0</span><br></pre></td></tr></table></figure></p>
+<h4 id="用户基础信息类：YCHealthInfoModel"><a href="#用户基础信息类：YCHealthInfoModel" class="headerlink" title="用户基础信息类：YCHealthInfoModel"></a>用户基础信息类：YCHealthInfoModel</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">构造方法</span></span><br><span class="line"><span class="comment">- parameters:</span></span><br><span class="line"><span class="comment">	- health:用户健康信息</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">convenience</span> <span class="keyword">public</span> <span class="keyword">init</span>(health:<span class="type">String</span>)</span><br></pre></td></tr></table></figure>
+<p>属性列表：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">///  健康信息，默认值 null</span><br><span class="line">public var health: String = &quot;以Json的形式上传&quot; </span><br><span class="line">如：&#123;&quot;pcos&quot;:1,&quot;endometriosis&quot;:0,&quot;tubalOperation&quot;:0,&quot;abortion&quot;:0,&quot;ivf&quot;:0,&quot;lpd&quot;:0&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="接口说明"><a href="#接口说明" class="headerlink" title="接口说明"></a>接口说明</h3><h4 id="SDK-初始化"><a href="#SDK-初始化" class="headerlink" title="SDK 初始化"></a>SDK 初始化</h4><p>AppDelegate 里需要使用 ShecareService 设置第三方 appID、appSecret 和用户 ID，如下：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 设置 appID</span></span><br><span class="line"><span class="comment">/// - parameter identifier: 由 SaaS 服务端提供</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">setApplicationIdentifier</span><span class="params">(<span class="number">_</span> identifier: String)</span></span></span><br><span class="line"><span class="comment">/// 设置 appSecret</span></span><br><span class="line"><span class="comment">/// - parameter identifier: 由 SaaS 服务端提供</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">setApplicationSecret</span><span class="params">(<span class="number">_</span> identifier: String)</span></span></span><br><span class="line"><span class="comment">/// 设置 UserID</span></span><br><span class="line"><span class="comment">/// - parameter identifier: App 用户标识符，由 App 提供</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">setUserIdentifier</span><span class="params">(<span class="number">_</span> identifier: String)</span></span></span><br></pre></td></tr></table></figure></p>
+<p>示例如下：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ShecareService</span>.shared().setApplicationIdentifier(appID)</span><br><span class="line"><span class="type">ShecareService</span>.shared().setApplicationSecret(appSecret)</span><br><span class="line"><span class="type">ShecareService</span>.shared().setUserIdentifier(userID)</span><br></pre></td></tr></table></figure></p>
+<h4 id="数据初始化"><a href="#数据初始化" class="headerlink" title="数据初始化"></a>数据初始化</h4><p>SDK 首次加载时，需要把用户的历史数据（包括经期、体温等）一次性传入，用于算法计算。后续有新数据时，只需要传人新数据即可。<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">判断 SDK 是否需要数据初始化</span></span><br><span class="line"><span class="comment">- returns:</span></span><br><span class="line"><span class="comment">返回 true 时，App 需要调用 initData 方法进行数据初始化</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">needInitData</span><span class="params">()</span></span> -&gt; <span class="type">Bool</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">数据初始化。</span></span><br><span class="line"><span class="comment">- parameters:</span></span><br><span class="line"><span class="comment">	- temperatures: 用户的体温数据，可为空</span></span><br><span class="line"><span class="comment">	- periods：用户的经期数据，可为空</span></span><br><span class="line"><span class="comment">	- userInfo：用户的基础生理信息，不可为空</span></span><br><span class="line"><span class="comment">	- completion：完成回调</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">initData</span><span class="params">(temperatures: [YCTemperatureModel]?, periods: [YCPeriodModel]?, userInfo: YCUserInfoModel, completion: @escaping <span class="params">(NSError?)</span></span></span> -&gt; <span class="type">Void</span>)</span><br></pre></td></tr></table></figure></p>
+<p>示例如下：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="type">ShecareService</span>.shared().needInitData() &#123;</span><br><span class="line">    <span class="type">ShecareService</span>.shared().initData(temperatures: temperatures, periods: periods, userInfo: userInfo, completion: &#123; (result) <span class="keyword">in</span></span><br><span class="line">        <span class="keyword">if</span> result &#123;</span><br><span class="line">            <span class="comment">//  Shecare SDK 数据初始化成功</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">//  Shecare SDK 数据初始化失败</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="绑定设备"><a href="#绑定设备" class="headerlink" title="绑定设备"></a>绑定设备</h4><p>绑定页面 UI 由 SDK 提供，绑定过程中与设备的交互也由 SDK 负责。App 只需要打开 SDK 绑定页即可。<br>绑定页面类定义：YCBindViewController<br>属性：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">代理</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">weak</span> <span class="keyword">public</span> <span class="keyword">var</span> delegate: <span class="type">YCBindViewControllerDelegate</span>?</span><br></pre></td></tr></table></figure></p>
+<p>实例化和设置代理，示例如下：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> vc = <span class="type">YCBindViewController</span>()</span><br><span class="line">vc.delegate = <span class="keyword">self</span></span><br><span class="line"><span class="keyword">let</span> navC = <span class="type">UINavigationController</span>(rootViewController: vc)</span><br><span class="line"><span class="keyword">self</span>.show(navC, sender: <span class="literal">nil</span>)</span><br></pre></td></tr></table></figure></p>
+<p>代理方法：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">返回绑定结果的代理方法</span></span><br><span class="line"><span class="comment">- parameters:</span></span><br><span class="line"><span class="comment">	- bindViewController: 当前的绑定页面控制器</span></span><br><span class="line"><span class="comment">	- macAddress: 绑定的设备 MAC 地址</span></span><br><span class="line"><span class="comment">    - error: 错误信息。当为空时，表示没有错误</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">bindViewController</span><span class="params">(<span class="number">_</span> bindViewController: YCBindViewController, didBind macAddress: String, error: NSError?)</span></span></span><br></pre></td></tr></table></figure></p>
+<p>实现代理方法，示例如下：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">ViewController</span>: <span class="title">YCBindViewControllerDelegate</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">bindViewController</span><span class="params">(<span class="number">_</span> bindViewController: YCBindViewController, didBind macAddress: String)</span></span> &#123;</span><br><span class="line">        showAlert(title: <span class="string">"绑定成功"</span>, message: macAddress, confirmHandler: &#123; (<span class="number">_</span>) <span class="keyword">in</span></span><br><span class="line">            bindViewController.dismiss(animated: <span class="literal">true</span>, completion: <span class="literal">nil</span>)</span><br><span class="line">        &#125;, cancelHandler: <span class="literal">nil</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">bindViewController</span><span class="params">(<span class="number">_</span> bindViewController: YCBindViewController, didFailedToBind macAddress: String, errorMessage: String)</span></span> &#123;</span><br><span class="line">        showAlert(title: <span class="string">"绑定失败"</span>, message: macAddress + <span class="string">"\n"</span> + errorMessage, confirmHandler: &#123; (<span class="number">_</span>) <span class="keyword">in</span></span><br><span class="line">            bindViewController.dismiss(animated: <span class="literal">true</span>, completion: <span class="literal">nil</span>)</span><br><span class="line">        &#125;, cancelHandler: <span class="literal">nil</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="解绑设备"><a href="#解绑设备" class="headerlink" title="解绑设备"></a>解绑设备</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">- parameters:</span></span><br><span class="line"><span class="comment">	- macAddress：需要解绑的设备 MAC 地址</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">unBind</span><span class="params">(macAddress: String)</span></span></span><br></pre></td></tr></table></figure>
+<p>示例如下：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ShecareService</span>.shared().unBind(macAddress: <span class="string">"C8:FD:19:02:95:7E"</span>)</span><br></pre></td></tr></table></figure></p>
+<h4 id="增量上传-温度、经期和用户基础生理信息"><a href="#增量上传-温度、经期和用户基础生理信息" class="headerlink" title="增量上传 温度、经期和用户基础生理信息"></a>增量上传 温度、经期和用户基础生理信息</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">新增、更新、删除温度。触发时机：用户进行体温修改时</span></span><br><span class="line"><span class="comment">- parameters:</span></span><br><span class="line"><span class="comment">	- temperatures: 用户操作的体温数据。SDK 会根据传入的数据自动决定操作类型，详见 YCTemperatureModel 类定义</span></span><br><span class="line"><span class="comment">	- completion：完成回调</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">upload</span><span class="params">(temperatures: [YCTemperatureModel]?, completion: @escaping <span class="params">(NSError?)</span></span></span> -&gt; <span class="type">Void</span>) </span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">新增、更新、删除经期记录。触发时机：用户修改经期数据时</span></span><br><span class="line"><span class="comment">- parameters:</span></span><br><span class="line"><span class="comment">	- periods：用户操作的经期数据。SDK 会根据传入的数据自动决定操作类型，详见 YCPeriodModel 类定义</span></span><br><span class="line"><span class="comment">	- completion：完成回调</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">upload</span><span class="params">(periods: [YCPeriodModel]?, completion: @escaping <span class="params">(NSError?)</span></span></span> -&gt; <span class="type">Void</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">新增、更新用户基础生理信息。触发时机：用户修改基础生理信息时。一个用户只能有一组基础生理信息，其中包括周期长度，经期长度</span></span><br><span class="line"><span class="comment">新版增加了：身高，体重，出生年月。</span></span><br><span class="line"><span class="comment">- parameters:</span></span><br><span class="line"><span class="comment">	- userInfo：用户的基础生理信息，不可为空</span></span><br><span class="line"><span class="comment">	- completion：完成回调</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">upload</span><span class="params">(userInfo: YCUserInfoModel, completion: @escaping <span class="params">(NSError?)</span></span></span> -&gt; <span class="type">Void</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">新增、更新用户生理信息。包括：白带，LH试纸，同房，B超，激素六项，症状数据。触发时机：用户编辑或修改生理信息时。</span></span><br><span class="line"><span class="comment">数据项介绍：</span></span><br><span class="line"><span class="comment">白带：int 分别为4个档次，传入数据为1,2，3,4，0是未记录</span></span><br><span class="line"><span class="comment">LH值：使用LH试纸测出的LH值，单位为mlU/ml,正常范围0-100。</span></span><br><span class="line"><span class="comment">同房：0,未记录，1未同房，2,同房</span></span><br><span class="line"><span class="comment">B超：用户是否确认排卵，</span></span><br><span class="line"><span class="comment">激素六项：</span></span><br><span class="line"><span class="comment">--睾酮单位：nmol/L</span></span><br><span class="line"><span class="comment">--雌二醇单位：pmol/L</span></span><br><span class="line"><span class="comment">--孕酮单位：nmol/L</span></span><br><span class="line"><span class="comment">--促黄体生成素单位：mlU/ml</span></span><br><span class="line"><span class="comment">--催乳素：nmol/L</span></span><br><span class="line"><span class="comment">--促卵泡生成激素：mlU/ml</span></span><br><span class="line"><span class="comment">病状数据：具体的症状信息，可参见我们的app设计</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">- parameters:</span></span><br><span class="line"><span class="comment">	- phyInfo：用户的生理信息，不可为空</span></span><br><span class="line"><span class="comment">	- completion：完成回调</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">upload</span><span class="params">(phyInfo: YCPhyModel, completion: @escaping <span class="params">(NSError?)</span></span></span> -&gt; <span class="type">Void</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">新增、更新用户健康数据，既往病史。触发时机：用户编辑或修改健康数据时。</span></span><br><span class="line"><span class="comment">目前健康数据包括：多囊卵巢，子宫内膜异位症，输卵管手术，流产过，试管婴儿，黄体不足。</span></span><br><span class="line"><span class="comment">- parameters:</span></span><br><span class="line"><span class="comment">	- healthInfo：用户的生理信息，不可为空</span></span><br><span class="line"><span class="comment">	- completion：完成回调</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">upload</span><span class="params">(healthInfo: YCHealthModel, completion: @escaping <span class="params">(NSError?)</span></span></span> -&gt; <span class="type">Void</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="返回基础体温曲线页面-URL"><a href="#返回基础体温曲线页面-URL" class="headerlink" title="返回基础体温曲线页面 URL"></a>返回基础体温曲线页面 URL</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">返回基础体温曲线页面 URL 路径，App 端使用 WebView 加载此路径即可</span></span><br><span class="line"><span class="comment">- returns:</span></span><br><span class="line"><span class="comment">返回基础体温曲线页面 URL</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">temperatureCharts</span><span class="params">()</span></span> -&gt; <span class="type">String</span></span><br></pre></td></tr></table></figure>
+<p>示例如下：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> webVC = <span class="type">YCWebViewController</span>()</span><br><span class="line">webVC.urlString = <span class="type">ShecareService</span>.shared().temperatureCharts()</span><br><span class="line">webVC.title = <span class="string">"体温曲线"</span></span><br><span class="line"><span class="keyword">self</span>.navigationController?.pushViewController(webVC, animated: <span class="literal">true</span>)</span><br></pre></td></tr></table></figure></p>
+<h4 id="返回-智能分析-结果。App-端根据需要对分析结果进行处理。"><a href="#返回-智能分析-结果。App-端根据需要对分析结果进行处理。" class="headerlink" title="返回 智能分析 结果。App 端根据需要对分析结果进行处理。"></a>返回 智能分析 结果。App 端根据需要对分析结果进行处理。</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">智能分析接口</span></span><br><span class="line"><span class="comment">- parameters:</span></span><br><span class="line"><span class="comment">    - completion：完成回调</span></span><br><span class="line"><span class="comment">    - error: 错误信息</span></span><br><span class="line"><span class="comment">    - result: 智能分析结果。详见 “智能分析结果说明”</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">analysis</span><span class="params">(<span class="number">_</span> completion: @escaping <span class="params">(<span class="number">_</span> error: NSError?, <span class="number">_</span> result: NSDictionary?)</span></span></span></span><br></pre></td></tr></table></figure>
+<p>示例如下：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ShecareService</span>.shared().analysis(&#123; (error, result) <span class="keyword">in</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> error = error &#123;</span><br><span class="line">        <span class="built_in">print</span>(error)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(result ?? <span class="string">"analysis result is nil."</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>智能分析结果说明：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"code"</span>: <span class="number">0</span>, </span><br><span class="line">    <span class="attr">"message"</span>: <span class="literal">null</span>, </span><br><span class="line">    <span class="attr">"data"</span>: &#123;</span><br><span class="line">        <span class="attr">"listAll"</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"list"</span>: [</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="attr">"state"</span>: <span class="string">"normal"</span>, </span><br><span class="line">                        <span class="attr">"msg"</span>: <span class="string">"测温时间不规律，大部分在10点和11之间。"</span>, </span><br><span class="line">                        <span class="attr">"guanjian"</span>: <span class="literal">null</span>, </span><br><span class="line">                        <span class="attr">"url"</span>: <span class="literal">null</span></span><br><span class="line">                    &#125;, </span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="attr">"state"</span>: <span class="string">"bigwave"</span>, </span><br><span class="line">                        <span class="attr">"msg"</span>: <span class="string">"到目前体温测量一切正常，加油哦！"</span>, </span><br><span class="line">                        <span class="attr">"guanjian"</span>: <span class="literal">null</span>, </span><br><span class="line">                        <span class="attr">"url"</span>: <span class="literal">null</span></span><br><span class="line">                    &#125;, </span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="attr">"state"</span>: <span class="string">"pregnant"</span>, </span><br><span class="line">                        <span class="attr">"msg"</span>: <span class="string">"根据基础体温，确定排卵日为2018年3月1日。"</span>, </span><br><span class="line">                        <span class="attr">"guanjian"</span>: <span class="literal">null</span>, </span><br><span class="line">                        <span class="attr">"url"</span>: <span class="literal">null</span></span><br><span class="line">                    &#125;, </span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="attr">"state"</span>: <span class="string">"noyellow"</span>, </span><br><span class="line">                        <span class="attr">"msg"</span>: <span class="string">"黄体升温幅度较低，速度较慢，疑似黄体功能不足。"</span>, </span><br><span class="line">                        <span class="attr">"guanjian"</span>: <span class="literal">null</span>, </span><br><span class="line">                        <span class="attr">"url"</span>: <span class="literal">null</span></span><br><span class="line">                    &#125;</span><br><span class="line">                ], </span><br><span class="line">                <span class="attr">"nowdate"</span>: <span class="string">"当前周期：2018年2月18日--今天"</span></span><br><span class="line">            &#125;, </span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"list"</span>: [</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="attr">"state"</span>: <span class="string">"normal"</span>, </span><br><span class="line">                        <span class="attr">"msg"</span>: <span class="string">"测温时间不规律，大部分在10点和11之间。"</span>, </span><br><span class="line">                        <span class="attr">"guanjian"</span>: <span class="literal">null</span>, </span><br><span class="line">                        <span class="attr">"url"</span>: <span class="literal">null</span></span><br><span class="line">                    &#125;, </span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="attr">"state"</span>: <span class="string">"bigwave"</span>, </span><br><span class="line">                        <span class="attr">"msg"</span>: <span class="string">"到目前体温测量一切正常，加油哦！"</span>, </span><br><span class="line">                        <span class="attr">"guanjian"</span>: <span class="literal">null</span>, </span><br><span class="line">                        <span class="attr">"url"</span>: <span class="literal">null</span></span><br><span class="line">                    &#125;, </span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="attr">"state"</span>: <span class="string">"pregnant"</span>, </span><br><span class="line">                        <span class="attr">"msg"</span>: <span class="string">"根据基础体温，确定排卵日为2018年1月29日。"</span>, </span><br><span class="line">                        <span class="attr">"guanjian"</span>: <span class="literal">null</span>, </span><br><span class="line">                        <span class="attr">"url"</span>: <span class="literal">null</span></span><br><span class="line">                    &#125;, </span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="attr">"state"</span>: <span class="string">"noyellow"</span>, </span><br><span class="line">                        <span class="attr">"msg"</span>: <span class="string">"黄体升温幅度较低，速度较慢，疑似黄体功能不足。"</span>, </span><br><span class="line">                        <span class="attr">"guanjian"</span>: <span class="literal">null</span>, </span><br><span class="line">                        <span class="attr">"url"</span>: <span class="literal">null</span></span><br><span class="line">                    &#125;, </span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="attr">"state"</span>: <span class="string">"noyellow"</span>, </span><br><span class="line">                        <span class="attr">"msg"</span>: <span class="string">"本周期黄体期长度为18。长度过长，正常黄体其长度为10-16天。"</span>, </span><br><span class="line">                        <span class="attr">"guanjian"</span>: <span class="literal">null</span>, </span><br><span class="line">                        <span class="attr">"url"</span>: <span class="literal">null</span></span><br><span class="line">                    &#125;</span><br><span class="line">                ], </span><br><span class="line">                <span class="attr">"nowdate"</span>: <span class="string">"历史周期：2018年1月1日--2018年2月17日"</span></span><br><span class="line">            &#125;, </span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"list"</span>: [</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="attr">"state"</span>: <span class="string">"normal"</span>, </span><br><span class="line">                        <span class="attr">"msg"</span>: <span class="string">"本周期无有效的基础体温。"</span>, </span><br><span class="line">                        <span class="attr">"guanjian"</span>: <span class="literal">null</span>, </span><br><span class="line">                        <span class="attr">"url"</span>: <span class="literal">null</span></span><br><span class="line">                    &#125;</span><br><span class="line">                ], </span><br><span class="line">                <span class="attr">"nowdate"</span>: <span class="string">"历史周期：2017年11月17日--2017年12月31日"</span></span><br><span class="line">            &#125;, </span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"list"</span>: [</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="attr">"state"</span>: <span class="string">"normal"</span>, </span><br><span class="line">                        <span class="attr">"msg"</span>: <span class="string">"本周期无有效的基础体温。"</span>, </span><br><span class="line">                        <span class="attr">"guanjian"</span>: <span class="literal">null</span>, </span><br><span class="line">                        <span class="attr">"url"</span>: <span class="literal">null</span></span><br><span class="line">                    &#125;</span><br><span class="line">                ], </span><br><span class="line">                <span class="attr">"nowdate"</span>: <span class="string">"历史周期：2017年10月1日--2017年11月16日"</span></span><br><span class="line">            &#125;, </span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"list"</span>: [</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="attr">"state"</span>: <span class="string">"normal"</span>, </span><br><span class="line">                        <span class="attr">"msg"</span>: <span class="string">"周期长度最长48天，最短45天，平均周期长度47,周期长度稳定!"</span>, </span><br><span class="line">                        <span class="attr">"guanjian"</span>: <span class="literal">null</span>, </span><br><span class="line">                        <span class="attr">"url"</span>: <span class="literal">null</span></span><br><span class="line">                    &#125;, </span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="attr">"state"</span>: <span class="string">"normal"</span>, </span><br><span class="line">                        <span class="attr">"msg"</span>: <span class="string">"经期长度最长6天，最短3天，平均经期长度4,经期长度稳定。"</span>, </span><br><span class="line">                        <span class="attr">"guanjian"</span>: <span class="literal">null</span>, </span><br><span class="line">                        <span class="attr">"url"</span>: <span class="literal">null</span></span><br><span class="line">                    &#125;</span><br><span class="line">                ], </span><br><span class="line">                <span class="attr">"nowdate"</span>: <span class="string">"整体周期分析："</span></span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>备注：当 code 非0时，说明内部分析出错，此时会在 message 中返回错误信息； listall 中的数据主要用到了：nowdate 和 message，nowdate 表示该段数据所处的周期， message 表示对这段周期分析的结果。</p>
+<h3 id="蓝牙"><a href="#蓝牙" class="headerlink" title="蓝牙"></a>蓝牙</h3><h4 id="类定义：BLEThermometer"><a href="#类定义：BLEThermometer" class="headerlink" title="类定义：BLEThermometer"></a>类定义：BLEThermometer</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">单例</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">public</span> <span class="title">func</span> <span class="title">shared</span>() -&gt; <span class="title">BLEThermometer</span></span></span><br></pre></td></tr></table></figure>
+<h5 id="属性列表："><a href="#属性列表：" class="headerlink" title="属性列表："></a>属性列表：</h5><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">///  当前连接的外部设备</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">var</span> activePeripheral: <span class="type">CBPeripheral</span>?</span><br><span class="line"><span class="comment">///  设备的版本号</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">var</span> firmwareVersion = <span class="string">""</span></span><br><span class="line"><span class="comment">///  设备的 MAC 地址</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">var</span> macAddress = <span class="string">""</span></span><br><span class="line"><span class="comment">///  代理。代理方法见 “蓝牙代理方法列表”</span></span><br><span class="line"><span class="keyword">weak</span> <span class="keyword">public</span> <span class="keyword">var</span> delegate: <span class="type">BLEThermometerDelegate</span>?</span><br></pre></td></tr></table></figure>
+<h5 id="YCBLEConnectType，蓝牙连接类型，定义如下："><a href="#YCBLEConnectType，蓝牙连接类型，定义如下：" class="headerlink" title="YCBLEConnectType，蓝牙连接类型，定义如下："></a>YCBLEConnectType，蓝牙连接类型，定义如下：</h5><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">///  蓝牙连接类型</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">YCBLEConnectType</span>: <span class="title">Int</span> </span>&#123;</span><br><span class="line">    <span class="comment">///  绑定页的连接，可以连接所有设备</span></span><br><span class="line">    <span class="keyword">case</span> binding = <span class="number">0</span></span><br><span class="line">    <span class="comment">///  非绑定页的连接，只能连接已绑定的设备</span></span><br><span class="line">    <span class="keyword">case</span> notBinding = <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="YCBLEState，蓝牙状态，定义如下："><a href="#YCBLEState，蓝牙状态，定义如下：" class="headerlink" title="YCBLEState，蓝牙状态，定义如下："></a>YCBLEState，蓝牙状态，定义如下：</h5><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">///  蓝牙状态</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">YCBLEState</span>: <span class="title">Int</span> </span>&#123;</span><br><span class="line">    <span class="comment">///  正常打开</span></span><br><span class="line">    <span class="keyword">case</span> valid = <span class="number">0</span></span><br><span class="line">    <span class="comment">///  未知状态</span></span><br><span class="line">    <span class="keyword">case</span> unknown = <span class="number">1</span></span><br><span class="line">    <span class="comment">///  设备不支持蓝牙 4.0</span></span><br><span class="line">    <span class="keyword">case</span> unsupported = <span class="number">2</span></span><br><span class="line">    <span class="comment">///  未授权 App 使用蓝牙</span></span><br><span class="line">    <span class="keyword">case</span> unauthorized = <span class="number">3</span></span><br><span class="line">    <span class="comment">///  蓝牙已关闭</span></span><br><span class="line">    <span class="keyword">case</span> poweredOff = <span class="number">4</span></span><br><span class="line">    <span class="comment">///  蓝牙正在重启</span></span><br><span class="line">    <span class="keyword">case</span> resetting = <span class="number">5</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="BLEFirmwareImageType，设备镜像版本，用于-OAD-空中升级，定义如下："><a href="#BLEFirmwareImageType，设备镜像版本，用于-OAD-空中升级，定义如下：" class="headerlink" title="BLEFirmwareImageType，设备镜像版本，用于 OAD 空中升级，定义如下："></a>BLEFirmwareImageType，设备镜像版本，用于 OAD 空中升级，定义如下：</h5><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">///  用户硬件镜像版本</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">BLEFirmwareImageType</span>: <span class="title">Int</span> </span>&#123;</span><br><span class="line">    <span class="comment">///  未知版本</span></span><br><span class="line">    <span class="keyword">case</span> unknown</span><br><span class="line">    <span class="comment">///  A 版本</span></span><br><span class="line">    <span class="keyword">case</span> typeA</span><br><span class="line">    <span class="comment">///  B 版本</span></span><br><span class="line">    <span class="keyword">case</span> typeB</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="BLENotifyType，设备可接收的指令，定义如下："><a href="#BLENotifyType，设备可接收的指令，定义如下：" class="headerlink" title="BLENotifyType，设备可接收的指令，定义如下："></a>BLENotifyType，设备可接收的指令，定义如下：</h5><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">///  指令类型</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">BLENotifyType</span>: <span class="title">Int</span> </span>&#123;</span><br><span class="line">    <span class="comment">///  把温度计的温度单位设置为摄氏度</span></span><br><span class="line">    <span class="keyword">case</span> setTemperatureUnitC = <span class="number">0</span></span><br><span class="line">    <span class="comment">///  把温度计的温度单位设置为华氏度</span></span><br><span class="line">    <span class="keyword">case</span> setTemperatureUnitF = <span class="number">1</span></span><br><span class="line">    <span class="comment">///  让温度计开始传输温度</span></span><br><span class="line">    <span class="keyword">case</span> transmitTemperature = <span class="number">2</span></span><br><span class="line">    <span class="comment">///  返回 “接收的温度数量” 给温度计（温度计收到此指令后，会校验发送的数量和接收的数量是否一致，如果一致，即认为温度发送成功，下次不再重复发送）</span></span><br><span class="line">    <span class="keyword">case</span> temperatureCount = <span class="number">3</span></span><br><span class="line">    <span class="comment">///  获取温度计电量</span></span><br><span class="line">    <span class="keyword">case</span> thermometerPower = <span class="number">4</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="方法列表"><a href="#方法列表" class="headerlink" title="方法列表"></a>方法列表</h4><h5 id="扫描并连接设备"><a href="#扫描并连接设备" class="headerlink" title="扫描并连接设备"></a>扫描并连接设备</h5><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">扫描并连接设备</span></span><br><span class="line"><span class="comment">- parameters:</span></span><br><span class="line"><span class="comment">	- type: 需要连接的类型。详见 YCBLEConnectType 的定义</span></span><br><span class="line"><span class="comment">	- macList: “已绑定” 的设备 MAC 地址列表，有多个设备时中间用 “,” 分隔即可。对于 type 为 notBinding 的连接有效，可以限制 App 只能连接地址列表里的设备</span></span><br><span class="line"><span class="comment">- returns:</span></span><br><span class="line"><span class="comment">返回 “是否成功开始扫描”</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">connectThermometer</span><span class="params">(type: YCBLEConnectType, macList: String)</span></span> -&gt; <span class="type">Bool</span></span><br></pre></td></tr></table></figure>
+<h5 id="停止扫描"><a href="#停止扫描" class="headerlink" title="停止扫描"></a>停止扫描</h5><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">停止扫描</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">stopScan</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+<h5 id="返回蓝牙状态"><a href="#返回蓝牙状态" class="headerlink" title="返回蓝牙状态"></a>返回蓝牙状态</h5><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">返回当前的蓝牙状态</span></span><br><span class="line"><span class="comment">- returns:</span></span><br><span class="line"><span class="comment">蓝牙状态，详见 YCBLEState 的定义</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">bleState</span><span class="params">()</span></span> -&gt; <span class="type">YCBLEState</span></span><br></pre></td></tr></table></figure>
+<h5 id="断开当前连接的设备"><a href="#断开当前连接的设备" class="headerlink" title="断开当前连接的设备"></a>断开当前连接的设备</h5><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">断开当前连接的设备</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">disconnectActiveThermometer</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+<h5 id="同步设备时间"><a href="#同步设备时间" class="headerlink" title="同步设备时间"></a>同步设备时间</h5><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">同步设备时间</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">asynchroizationTimeFromLocal</span><span class="params">(date: Date)</span></span></span><br></pre></td></tr></table></figure>
+<h5 id="发送特定指令"><a href="#发送特定指令" class="headerlink" title="发送特定指令"></a>发送特定指令</h5><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">发送特定指令给设备</span></span><br><span class="line"><span class="comment">- parameters:</span></span><br><span class="line"><span class="comment">	- type: 指令类型。详见 BLENotifyType 的定义</span></span><br><span class="line"><span class="comment">	- value: 仅用于 temperatureCount 指令</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">setNotifyValue</span><span class="params">(type: BLENotifyType, value: UInt8)</span></span></span><br></pre></td></tr></table></figure>
+<h4 id="蓝牙代理方法列表"><a href="#蓝牙代理方法列表" class="headerlink" title="蓝牙代理方法列表"></a>蓝牙代理方法列表</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">///  设备蓝牙状态改变的回调</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">bleThermometerDidUpdateState</span><span class="params">(<span class="number">_</span> bleThermometer: BLEThermometer)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">///  获取设备镜像版本的回调，详见 BLEFirmwareImageType 定义</span></span><br><span class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">bleThermometer</span><span class="params">(<span class="number">_</span> bleThermometer: BLEThermometer, didReadFirmwareImageType type: BLEFirmwareImageType)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">///  设备连接成功的回调</span></span><br><span class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">bleThermometer</span><span class="params">(<span class="number">_</span> bleThermometer: BLEThermometer, didConnect peripheral: CBPeripheral)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">///  设备连接失败的回调</span></span><br><span class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">bleThermometer</span><span class="params">(<span class="number">_</span> bleThermometer: BLEThermometer,</span></span></span><br><span class="line"><span class="function"><span class="params">                             didFailToConnect peripheral: CBPeripheral,</span></span></span><br><span class="line"><span class="function"><span class="params">                             error: Error?)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">///  设备断开连接的回调</span></span><br><span class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">bleThermometer</span><span class="params">(<span class="number">_</span> bleThermometer: BLEThermometer,</span></span></span><br><span class="line"><span class="function"><span class="params">                             didDisconnect peripheral: CBPeripheral,</span></span></span><br><span class="line"><span class="function"><span class="params">                             error: Error?)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">///  获取温度的回调</span></span><br><span class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">bleThermometer</span><span class="params">(<span class="number">_</span> bleThermometer: BLEThermometer,</span></span></span><br><span class="line"><span class="function"><span class="params">                             didUpload temperatures: [YCTemperatureModel])</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">///  设置设备温度单位的回调</span></span><br><span class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">bleThermometer</span><span class="params">(<span class="number">_</span> bleThermometer: BLEThermometer, didSetTemperatureUnit success: Bool)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">///  获取设备版本号的回调</span></span><br><span class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">bleThermometer</span><span class="params">(<span class="number">_</span> bleThermometer: BLEThermometer, didGetFirmwareVersion firmwareVersion: String)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">///  同步设备时间的回调</span></span><br><span class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">bleThermometer</span><span class="params">(<span class="number">_</span> bleThermometer: BLEThermometer, didSetThermometerTime success: Bool)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">///  获取设备电量的回调</span></span><br><span class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">bleThermometer</span><span class="params">(<span class="number">_</span> bleThermometer: BLEThermometer, didGetThermometerPower value: Double)</span></span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/27/Shecare Android SaaS SDK/" rel="next" title="Shecare Android SaaS SDK 开发文档">
+                <i class="fa fa-chevron-left"></i> Shecare Android SaaS SDK 开发文档
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/02/Shecare SaaS SDK Analysis HTTP/" rel="prev" title="Shecare SaaS SDK 智能分析 HTTP 接口">
+                Shecare SaaS SDK 智能分析 HTTP 接口 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">iKangtai</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo-地址"><span class="nav-number">1.</span> <span class="nav-text">Demo 地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类定义"><span class="nav-number">2.</span> <span class="nav-text">类定义</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#核心服务类：ShecareService"><span class="nav-number">2.1.</span> <span class="nav-text">核心服务类：ShecareService</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#温度类：YCTemperatureModel"><span class="nav-number">2.2.</span> <span class="nav-text">温度类：YCTemperatureModel</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#经期类：YCPeriodModel"><span class="nav-number">2.3.</span> <span class="nav-text">经期类：YCPeriodModel</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用户基础信息类：YCUserInfoModel"><span class="nav-number">2.4.</span> <span class="nav-text">用户基础信息类：YCUserInfoModel</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用户生理信息类：YCPhyModel"><span class="nav-number">2.5.</span> <span class="nav-text">用户生理信息类：YCPhyModel</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用户基础信息类：YCHealthInfoModel"><span class="nav-number">2.6.</span> <span class="nav-text">用户基础信息类：YCHealthInfoModel</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接口说明"><span class="nav-number">3.</span> <span class="nav-text">接口说明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SDK-初始化"><span class="nav-number">3.1.</span> <span class="nav-text">SDK 初始化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据初始化"><span class="nav-number">3.2.</span> <span class="nav-text">数据初始化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#绑定设备"><span class="nav-number">3.3.</span> <span class="nav-text">绑定设备</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解绑设备"><span class="nav-number">3.4.</span> <span class="nav-text">解绑设备</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#增量上传-温度、经期和用户基础生理信息"><span class="nav-number">3.5.</span> <span class="nav-text">增量上传 温度、经期和用户基础生理信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#返回基础体温曲线页面-URL"><span class="nav-number">3.6.</span> <span class="nav-text">返回基础体温曲线页面 URL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#返回-智能分析-结果。App-端根据需要对分析结果进行处理。"><span class="nav-number">3.7.</span> <span class="nav-text">返回 智能分析 结果。App 端根据需要对分析结果进行处理。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#蓝牙"><span class="nav-number">4.</span> <span class="nav-text">蓝牙</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#类定义：BLEThermometer"><span class="nav-number">4.1.</span> <span class="nav-text">类定义：BLEThermometer</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#属性列表："><span class="nav-number">4.1.1.</span> <span class="nav-text">属性列表：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#YCBLEConnectType，蓝牙连接类型，定义如下："><span class="nav-number">4.1.2.</span> <span class="nav-text">YCBLEConnectType，蓝牙连接类型，定义如下：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#YCBLEState，蓝牙状态，定义如下："><span class="nav-number">4.1.3.</span> <span class="nav-text">YCBLEState，蓝牙状态，定义如下：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#BLEFirmwareImageType，设备镜像版本，用于-OAD-空中升级，定义如下："><span class="nav-number">4.1.4.</span> <span class="nav-text">BLEFirmwareImageType，设备镜像版本，用于 OAD 空中升级，定义如下：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#BLENotifyType，设备可接收的指令，定义如下："><span class="nav-number">4.1.5.</span> <span class="nav-text">BLENotifyType，设备可接收的指令，定义如下：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法列表"><span class="nav-number">4.2.</span> <span class="nav-text">方法列表</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#扫描并连接设备"><span class="nav-number">4.2.1.</span> <span class="nav-text">扫描并连接设备</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#停止扫描"><span class="nav-number">4.2.2.</span> <span class="nav-text">停止扫描</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回蓝牙状态"><span class="nav-number">4.2.3.</span> <span class="nav-text">返回蓝牙状态</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#断开当前连接的设备"><span class="nav-number">4.2.4.</span> <span class="nav-text">断开当前连接的设备</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#同步设备时间"><span class="nav-number">4.2.5.</span> <span class="nav-text">同步设备时间</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#发送特定指令"><span class="nav-number">4.2.6.</span> <span class="nav-text">发送特定指令</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#蓝牙代理方法列表"><span class="nav-number">4.3.</span> <span class="nav-text">蓝牙代理方法列表</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">iKangtai</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
