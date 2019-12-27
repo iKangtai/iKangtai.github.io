@@ -96,7 +96,7 @@
 <meta property="og:image" content="https://yunchengfile.oss-cn-beijing.aliyuncs.com/sdk/dialog-box-description.png">
 <meta property="og:image" content="https://yunchengfile.oss-cn-beijing.aliyuncs.com/sdk/image2019-11-26_22-34-45.png">
 <meta property="og:image" content="https://yunchengfile.oss-cn-beijing.aliyuncs.com/sdk/image2019-11-29_12-4-23.png">
-<meta property="og:updated_time" content="2019-12-27T02:20:24.573Z">
+<meta property="og:updated_time" content="2019-12-27T02:47:11.703Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="孕橙智能试纸识别算法之客户端API说明">
 <meta name="twitter:description" content="支持平台目前孕橙智能试纸识别算法SDK支持以下平台：  iOS  Android">
@@ -376,7 +376,6 @@
 <li>如果用户在页面点击了“确认”按钮，则试纸结果确认对话框消失，调用方获取返回的试纸T、C线位置，抠出的图片内容以及LH Level等；</li>
 </ol>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">几点约定：</span><br><span class="line"><span class="code">	1.返回的T、C线为算法经过算法计算一个均值线；</span></span><br><span class="line"><span class="code">	2.虽然目前试纸API返回了试纸T、C线的4条边界“直线”，但是这4条“直线”边界本身可能不是一个严格的边界，有些看起来是白色区域，但是可能被包含在T、C线区域内，具体原因如下：</span></span><br><span class="line"><span class="code">		a.试纸的T、C边界本身就不是一个boundry clear的边界；</span></span><br><span class="line"><span class="code">		b.有时候肉眼无法看出的细微的“红色”，但是在计算机图形学里面可能就是一个色值，然后从T、C线的角度来说，可能会被计算在内；</span></span><br></pre></td></tr></table></figure>
-<p>#### </p>
 <h1 id="模块结构图"><a href="#模块结构图" class="headerlink" title="模块结构图"></a>模块结构图</h1><p><img src="https://yunchengfile.oss-cn-beijing.aliyuncs.com/sdk/modular-structure.png" alt=""></p>
 <h2 id="模块描述"><a href="#模块描述" class="headerlink" title="模块描述"></a>模块描述</h2><p>我们的试纸识别技术基于深度学习框架，共分为三个模块：</p>
 <ul>
