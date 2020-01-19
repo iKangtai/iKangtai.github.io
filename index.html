@@ -219,6 +219,148 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ikangtai.github.io/2020/01/19/Shecare-LHPaper-plugin-SDK/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="iKangtai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="爱康泰文档发布平台">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/01/19/Shecare-LHPaper-plugin-SDK/" itemprop="url">未命名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-19T15:27:44+08:00">
+                2020-01-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>[TOC]</p>
+<h1 id="孕橙试纸小程序插件"><a href="#孕橙试纸小程序插件" class="headerlink" title="孕橙试纸小程序插件"></a>孕橙试纸小程序插件</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>孕橙试纸小程序插件可以用来分析试纸，返回试纸的t,c线的位置和分析出来试纸值</p>
+<h2 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h2><p><img src="https://yunchengfile.oss-cn-beijing.aliyuncs.com/sdk/lh-mp-plugin-demo.png" alt=""></p>
+<h2 id="插件申请"><a href="#插件申请" class="headerlink" title="插件申请"></a>插件申请</h2><h3 id="微信公众平台插件申请"><a href="#微信公众平台插件申请" class="headerlink" title="微信公众平台插件申请"></a>微信公众平台插件申请</h3><p>打开<a href="https://mp.weixin.qq.com/" target="_blank" rel="noopener">https://mp.weixin.qq.com/</a> ，登录到小程序微信公众平台(登录你的小程序账号，否则看到的界面会不一样)，在设置-第三方服务-插件管理下添加插件<strong>孕橙试纸插件</strong></p>
+<p><img src="https://yunchengfile.oss-cn-beijing.aliyuncs.com/sdk/apply_plugin_back.png" alt=""></p>
+<p>搜索输入<strong>孕橙试纸插件</strong>即可搜索到插件</p>
+<p><img src="" alt=""></p>
+<p>然后点击查看详情进入到插件详情页面，点击添加插件按钮</p>
+<p><img src="" alt=""></p>
+<p>申请成功即可对接<strong>孕橙试纸插件</strong></p>
+<h3 id="孕橙saas-认证申请"><a href="#孕橙saas-认证申请" class="headerlink" title="孕橙saas 认证申请"></a>孕橙saas 认证申请</h3><p>申请使用可邮件告知你的称呼，联系方式，以及小程序名称，也可以加微信或者打电话进行咨询</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">邮箱：bd@ikangtai.com</span><br><span class="line">电话：13716387504</span><br><span class="line">微信：qq378115003</span><br></pre></td></tr></table></figure>
+<h2 id="技术对接孕橙试纸插件"><a href="#技术对接孕橙试纸插件" class="headerlink" title="技术对接孕橙试纸插件"></a>技术对接孕橙试纸插件</h2><h3 id="添加合法域名"><a href="#添加合法域名" class="headerlink" title="添加合法域名"></a>添加合法域名</h3><p>开发者登陆到小程序微信公众平台，在设置-开发设置-服务器域名下添加孕橙试纸插件的服务器request合法域名：</p>
+<ul>
+<li>saas.shecarefertility.com</li>
+</ul>
+<h3 id="引入代码插件包"><a href="#引入代码插件包" class="headerlink" title="引入代码插件包"></a>引入代码插件包</h3><h4 id="app-json"><a href="#app-json" class="headerlink" title="app.json"></a>app.json</h4><p>在app.json中添加plugin，其中version建议使用1.0.1以上</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"plugins"</span>: &#123;</span><br><span class="line">   <span class="string">"myPlugin"</span>: &#123;</span><br><span class="line">     <span class="string">"version"</span>: <span class="string">"1.0.1"</span>,</span><br><span class="line">     <span class="string">"provider"</span>: <span class="string">"wx479777803030f27b"</span></span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="小程序页面引入孕橙试纸插件模块"><a href="#小程序页面引入孕橙试纸插件模块" class="headerlink" title="小程序页面引入孕橙试纸插件模块"></a>小程序页面引入孕橙试纸插件模块</h3><h4 id="小程序原生集成"><a href="#小程序原生集成" class="headerlink" title="小程序原生集成"></a>小程序原生集成</h4><h5 id="page-json"><a href="#page-json" class="headerlink" title="page.json"></a>page.json</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"usingComponents"</span>: &#123;</span><br><span class="line">    <span class="string">"v-lh-paper-analysis"</span>: <span class="string">"plugin://myPlugin/lhPaperAnalysis"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="page-wxml"><a href="#page-wxml" class="headerlink" title="page.wxml"></a>page.wxml</h5><p>需保证在一个页面中仅引入该插件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;v-lh-paper-analysis</span><br><span class="line">  bind:getBase64ForImage=<span class="string">"getBase64ForImage"</span></span><br><span class="line">  bind:navigateBack=<span class="string">"navigateBack"</span></span><br><span class="line">  bind:confirmSubmit=<span class="string">"confirmSubmit"</span></span><br><span class="line">  saasOb=<span class="string">"saasOb"</span> </span><br><span class="line">  /&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="page-js"><a href="#page-js" class="headerlink" title="page.js"></a>page.js</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">Page(&#123;</span><br><span class="line">  data: &#123;</span><br><span class="line">    saasOb: &#123;</span><br><span class="line">      <span class="comment">// 裁剪图，保存在小程序的临时路径</span></span><br><span class="line">      <span class="comment">// 例:http://tmp/wx5817660dcd0e4962.o6zAJs3rw5P5v5UaQr3Vq53AjESw.3naiQ1doAFjB17c3e652f2e92f482030def684652e68.jpg</span></span><br><span class="line">      cropImage: <span class="string">''</span>,</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 全景图，保存在小程序的临时路径</span></span><br><span class="line">      <span class="comment">// 例:http://tmp/wx5817660dcd0e4962.o6zAJs3rw5P5v5UaQr3Vq53AjESw.3naiQ1doAFjB17c3e652f2e92f482030def684652e68.jpg</span></span><br><span class="line">      panoramaImage: <span class="string">''</span>,</span><br><span class="line"></span><br><span class="line">      <span class="comment">// saas申请的saasAppId</span></span><br><span class="line">      saasAppId: <span class="string">''</span>,</span><br><span class="line"></span><br><span class="line">      <span class="comment">// saas申请的saasAppKey</span></span><br><span class="line">      saasAppKey: <span class="string">''</span>,</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 用户的唯一标识</span></span><br><span class="line">      userId: <span class="string">''</span>,</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 试纸时间，形如'2020-01-01 12:00:00'</span></span><br><span class="line">      usingTime: <span class="string">''</span>,</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 相册选择传1，拍照传2</span></span><br><span class="line">      fromSource: <span class="number">2</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  onLoad(options) &#123;</span><br><span class="line">    <span class="keyword">var</span> cropImage = options.cropImage</span><br><span class="line">    <span class="keyword">var</span> panoramaImage = options.panoramaImage</span><br><span class="line">    <span class="keyword">var</span> saasAppId = options.appId</span><br><span class="line">    <span class="keyword">var</span> saasAppKey = options.appKey</span><br><span class="line">    <span class="keyword">var</span> userId = options.userId</span><br><span class="line">    <span class="keyword">var</span> usingTime = options.usingTime</span><br><span class="line">    <span class="keyword">var</span> fromSource = options.fromSource</span><br><span class="line">    <span class="keyword">var</span> saasOb = &#123;</span><br><span class="line">      cropImage: cropImage,</span><br><span class="line">      panoramaImage: panoramaImage,</span><br><span class="line">      userId: userId,</span><br><span class="line">      usingTime: usingTime,</span><br><span class="line">      saasAppId: saasAppId,</span><br><span class="line">      saasAppKey: saasAppKey,</span><br><span class="line">      fromSource: fromSource</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 当插件检测到saasOb变化的时候，会进行重新分析</span></span><br><span class="line">    <span class="keyword">this</span>.saasOb = saasOb</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    <span class="comment">// 因微信插件功能限制，在此需要声明一个图片转base64编码的方法给插件使用</span></span><br><span class="line">    getBase64ForImage(e, success, faile) &#123;</span><br><span class="line">      <span class="keyword">var</span> imgSrc = e.target.imgSrc</span><br><span class="line">      <span class="keyword">var</span> res = wx.getFileSystemManager().readFileSync(imgSrc, <span class="string">'base64'</span>)</span><br><span class="line">      e.target.success(res)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 点击返回重拍触发的事件</span></span><br><span class="line">    navigateBack(event) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'返回重拍'</span>)</span><br><span class="line">      <span class="comment">// 调用方可在此做自定义跳转等</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 插件中点击确认提交触发的事件可在此方法接收，返回结果有三：</span></span><br><span class="line">    <span class="comment">// valueTLocation：t线的位置，百分比，值在0-1之间，保留四位小数，例:0.4533</span></span><br><span class="line">    <span class="comment">// valueCLocation：c线的位置，百分比，值在0-1之间，保留四位小数，例:0.5533</span></span><br><span class="line">    <span class="comment">// analysisResultValue: 试纸分析出来的value值，值是0，5，10，15，20，25，45，65的其中之一，例:10</span></span><br><span class="line">    confirmSubmit(event) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'确认提交'</span> + <span class="built_in">JSON</span>.stringify(event))</span><br><span class="line">      <span class="keyword">var</span> valueTLocation = event.target.valueTLocation</span><br><span class="line">      <span class="keyword">var</span> valueCLocation = event.target.valueCLocation</span><br><span class="line">      <span class="keyword">var</span> analysisResultValue = event.target.analysisResultValue</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="mpvue集成"><a href="#mpvue集成" class="headerlink" title="mpvue集成"></a>mpvue集成</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;lh-paper-analysis  </span><br><span class="line">  @getBase64ForImage=<span class="string">"getBase64ForImage"</span></span><br><span class="line">  @navigateBack=<span class="string">"navigateBack"</span></span><br><span class="line">  @confirmSubmit=<span class="string">"confirmSubmit"</span></span><br><span class="line">  :saasOb=<span class="string">"saasOb"</span> </span><br><span class="line">  /&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default &#123;</span></span><br><span class="line"><span class="regexp">  data () &#123;</span></span><br><span class="line"><span class="regexp">    return &#123;</span></span><br><span class="line"><span class="regexp">      saasOb: &#123;</span></span><br><span class="line"><span class="regexp">      /</span><span class="regexp">/ 裁剪图，保存在小程序的临时路径</span></span><br><span class="line"><span class="regexp">      /</span><span class="regexp">/ 例:http:/</span><span class="regexp">/tmp/</span>wx5817660dcd0e4962.o6zAJs3rw5P5v5UaQr3Vq53AjESw<span class="number">.3</span>naiQ1doAFjB17c3e652f2e92f482030def684652e68.jpg</span><br><span class="line">      cropImage: <span class="string">''</span>,</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 全景图，保存在小程序的临时路径</span></span><br><span class="line">      <span class="comment">// 例:http://tmp/wx5817660dcd0e4962.o6zAJs3rw5P5v5UaQr3Vq53AjESw.3naiQ1doAFjB17c3e652f2e92f482030def684652e68.jpg</span></span><br><span class="line">      panoramaImage: <span class="string">''</span>,</span><br><span class="line"></span><br><span class="line">      <span class="comment">// saas申请的saasAppId</span></span><br><span class="line">      saasAppId: <span class="string">''</span>,</span><br><span class="line"></span><br><span class="line">      <span class="comment">// saas申请的saasAppKey</span></span><br><span class="line">      saasAppKey: <span class="string">''</span>,</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 用户的唯一标识</span></span><br><span class="line">      userId: <span class="string">''</span>,</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 试纸时间，形如'2020-01-01 12:00:00'</span></span><br><span class="line">      usingTime: <span class="string">''</span>,</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 相册选择传1，拍照传2</span></span><br><span class="line">      fromSource: <span class="number">2</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  onLoad(options) &#123;</span><br><span class="line">    <span class="keyword">var</span> cropImage = options.cropImage</span><br><span class="line">    <span class="keyword">var</span> panoramaImage = options.panoramaImage</span><br><span class="line">    <span class="keyword">var</span> saasAppId = options.appId</span><br><span class="line">    <span class="keyword">var</span> saasAppKey = options.appKey</span><br><span class="line">    <span class="keyword">var</span> userId = options.userId</span><br><span class="line">    <span class="keyword">var</span> usingTime = options.usingTime</span><br><span class="line">    <span class="keyword">var</span> fromSource = options.fromSource</span><br><span class="line">    <span class="keyword">var</span> saasOb = &#123;</span><br><span class="line">      cropImage: cropImage,</span><br><span class="line">      panoramaImage: panoramaImage,</span><br><span class="line">      userId: userId,</span><br><span class="line">      usingTime: usingTime,</span><br><span class="line">      saasAppId: saasAppId,</span><br><span class="line">      saasAppKey: saasAppKey,</span><br><span class="line">      fromSource: fromSource</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 当插件检测到saasOb变化的时候，会进行重新分析</span></span><br><span class="line">    <span class="keyword">this</span>.saasOb = saasOb</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">  </span><br><span class="line">    <span class="comment">// 因微信插件功能限制，在此需要声明一个图片转base64编码的方法给插件使用</span></span><br><span class="line">    getBase64ForImage(e, success, faile) &#123;</span><br><span class="line">      <span class="keyword">var</span> imgSrc = e.target.imgSrc</span><br><span class="line">      <span class="keyword">var</span> res = wx.getFileSystemManager().readFileSync(imgSrc, <span class="string">'base64'</span>)</span><br><span class="line">      e.target.success(res)</span><br><span class="line">    &#125;,</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 点击返回重拍触发的事件</span></span><br><span class="line">    navigateBack(event) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'返回重拍'</span>)</span><br><span class="line">      <span class="comment">// 调用方可在此做自定义跳转等</span></span><br><span class="line">    &#125;,</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 插件中点击确认提交触发的事件可在此方法接收，返回结果有三：</span></span><br><span class="line">    <span class="comment">// valueTLocation：t线的位置，百分比，值在0-1之间，保留四位小数，例:0.4533</span></span><br><span class="line">    <span class="comment">// valueCLocation：c线的位置，百分比，值在0-1之间，保留四位小数，例:0.5533</span></span><br><span class="line">    <span class="comment">// analysisResultValue: 试纸分析出来的value值，值是0，5，10，15，20，25，45，65的其中之一，例:10</span></span><br><span class="line">    confirmSubmit(event) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'确认提交'</span> + <span class="built_in">JSON</span>.stringify(event))</span><br><span class="line">      <span class="keyword">var</span> valueTLocation = event.target.valueTLocation</span><br><span class="line">      <span class="keyword">var</span> valueCLocation = event.target.valueCLocation</span><br><span class="line">      <span class="keyword">var</span> analysisResultValue = event.target.analysisResultValue</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;style&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>style&gt;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://ikangtai.github.io/2019/12/27/Shecare-Saas-LHPaper-Client-SDK-Image/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1010,7 +1152,7 @@ b.在满足条件1的前提下，读值相差一个档位不算错误；
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
