@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Demo&amp;lt;https://github.com/iKangtai/BLE_SDK_Demo_iOS&amp;gt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS BLE SDK Document">
+<meta property="og:url" content="https://ikangtai.github.io/2020/06/17/iOS-BLE-SDK/index.html">
+<meta property="og:site_name" content="爱康泰文档发布平台">
+<meta property="og:description" content="Demo&amp;lt;https://github.com/iKangtai/BLE_SDK_Demo_iOS&amp;gt;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-06-17T05:05:40.871Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS BLE SDK Document">
+<meta name="twitter:description" content="Demo&amp;lt;https://github.com/iKangtai/BLE_SDK_Demo_iOS&amp;gt;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://ikangtai.github.io/2020/06/17/iOS-BLE-SDK/"/>
+
+
+
+
+
+  <title>iOS BLE SDK Document | 爱康泰文档发布平台</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">爱康泰文档发布平台</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ikangtai.github.io/2020/06/17/iOS-BLE-SDK/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="iKangtai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="爱康泰文档发布平台">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">iOS BLE SDK Document</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-17T11:18:08+08:00">
+                2020-06-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><pre><code>&lt;https://github.com/iKangtai/BLE_SDK_Demo_iOS&gt;
+</code></pre><a id="more"></a>
+<h2 id="Bluetooth-Low-Energy-SDK"><a href="#Bluetooth-Low-Energy-SDK" class="headerlink" title="Bluetooth Low Energy SDK"></a>Bluetooth Low Energy SDK</h2><h3 id="Define"><a href="#Define" class="headerlink" title="Define"></a>Define</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">/// YCBLEState</span><br><span class="line">typedef NS_ENUM(NSInteger, YCBLEState) &#123;</span><br><span class="line">    /// Valid</span><br><span class="line">    YCBLEStateValid = 0,</span><br><span class="line">    /// Unknown</span><br><span class="line">    YCBLEStateUnknown,</span><br><span class="line">    /// Unsupported</span><br><span class="line">    YCBLEStateUnsupported,</span><br><span class="line">    /// Unauthorized</span><br><span class="line">    YCBLEStateUnauthorized,</span><br><span class="line">    /// PoweredOff</span><br><span class="line">    YCBLEStatePoweredOff,</span><br><span class="line">    /// Resetting</span><br><span class="line">    YCBLEStateResetting</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">/// Define BLE notify type</span><br><span class="line">typedef NS_ENUM(NSInteger, YCNotifyType) &#123;</span><br><span class="line">    /// Set the thermometer to centigrade</span><br><span class="line">    YCNotifyTypeSetTemperatureUnitC,</span><br><span class="line">    /// Set the thermometer to fahrenheit</span><br><span class="line">    YCNotifyTypeSetTemperatureUnitF,</span><br><span class="line">    /// Set time</span><br><span class="line">    YCNotifyTypeSetTime,</span><br><span class="line">    /// Get the thermometer&apos;s power</span><br><span class="line">    YCNotifyTypeGetPower,</span><br><span class="line">    /// Get Firmware Version</span><br><span class="line">    YCNotifyTypeGetFirmwareVersion,</span><br><span class="line">    /// Return temperatures&apos; number to thermometer</span><br><span class="line">    YCNotifyTypeTemperatureACK,</span><br><span class="line">    /// Transmit temperature</span><br><span class="line">    YCNotifyTypeTransmitTemperature,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">/// Temperature flag</span><br><span class="line">typedef NS_ENUM(NSInteger, YCTemperatureFlag) &#123;</span><br><span class="line">    /// Online</span><br><span class="line">    YCTemperatureFlagOnline,</span><br><span class="line">    /// Offline</span><br><span class="line">    YCTemperatureFlagOffline,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">/// Thermometer type</span><br><span class="line">typedef NS_ENUM(NSInteger, YCThermometerType) &#123;</span><br><span class="line">    /// Thermometer</span><br><span class="line">    YCThermometerTypeThree,</span><br><span class="line">    /// Forehead temperature gun</span><br><span class="line">    YCThermometerTypeFour,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="YCPeripheralDelegate"><a href="#YCPeripheralDelegate" class="headerlink" title="YCPeripheralDelegate"></a>YCPeripheralDelegate</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">@protocol YCPeripheralManagerDelegate &lt;NSObject&gt;</span><br><span class="line"></span><br><span class="line">@required</span><br><span class="line"></span><br><span class="line">-(void)peripheralManager:(YCPeripheralManager *)manager</span><br><span class="line">          didUpdateState:(YCBLEState)state;</span><br><span class="line"></span><br><span class="line">-(void)peripheralManager:(YCPeripheralManager *)manager</span><br><span class="line">      didFindPeripherals:(NSArray &lt;YCPeripheral *&gt;*)peripherals;</span><br><span class="line"></span><br><span class="line">-(void)peripheralManager:(YCPeripheralManager *)manager</span><br><span class="line">    didConnectPeripheral:(YCPeripheral *)peripheral;</span><br><span class="line"></span><br><span class="line">-(void)peripheralManager:(YCPeripheralManager *)manager</span><br><span class="line"> didUploadWithPeripheral:(YCPeripheral *)peripheral</span><br><span class="line">            temperatures:(NSArray &lt;YCTemperature *&gt;*)temperatures;</span><br><span class="line"></span><br><span class="line">-(void)peripheralManager:(YCPeripheralManager *)manager</span><br><span class="line">didSetNotifyToPeripheral:(YCPeripheral *)peripheral</span><br><span class="line">                    type:(YCNotifyType)type</span><br><span class="line">                  result:(NSString *)result</span><br><span class="line">                   error:(NSError * _Nullable)error;</span><br><span class="line"></span><br><span class="line">@optional</span><br><span class="line"></span><br><span class="line">-(void)peripheralManagerDidStartScan:(YCPeripheralManager *)manager;</span><br><span class="line"></span><br><span class="line">-(void)peripheralManagerDidStopScan:(YCPeripheralManager *)manager;</span><br><span class="line"></span><br><span class="line">-(void)peripheralManager:(YCPeripheralManager *)manager</span><br><span class="line">didFailToConnectPeripheral:(YCPeripheral *)peripheral</span><br><span class="line">                   error:(NSError *)error;</span><br><span class="line"></span><br><span class="line">-(void)peripheralManager:(YCPeripheralManager *)manager</span><br><span class="line"> didDisConnectPeripheral:(YCPeripheral *)peripheral</span><br><span class="line">                   error:(NSError * _Nullable)error;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<h3 id="Class"><a href="#Class" class="headerlink" title="Class"></a>Class</h3><h4 id="YCPeripheral"><a href="#YCPeripheral" class="headerlink" title="YCPeripheral"></a>YCPeripheral</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/// The current connected peripheral/divice</span><br><span class="line">@property (nonatomic, strong, nullable) CBPeripheral *peripheral;</span><br><span class="line">/// Firmware version</span><br><span class="line">@property (nonatomic, copy) NSString *firmwareVersion;</span><br><span class="line">/// The MAC address of current connected device</span><br><span class="line">@property (nonatomic, copy) NSString *macAddress;</span><br><span class="line">/// Peripheral Name</span><br><span class="line">@property (nonatomic, copy) NSString *name;</span><br><span class="line">/// Type</span><br><span class="line">@property (nonatomic, assign) YCThermometerType type;</span><br><span class="line">/// Connect state</span><br><span class="line">@property (nonatomic, assign) BOOL connected;</span><br></pre></td></tr></table></figure>
+<h4 id="YCTemperature"><a href="#YCTemperature" class="headerlink" title="YCTemperature"></a>YCTemperature</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/// Temperature</span><br><span class="line">@property (nonatomic, assign) double temperature;</span><br><span class="line">/// The measure time</span><br><span class="line">@property (nonatomic, copy) NSString *time;</span><br><span class="line">/// Flag</span><br><span class="line">@property (nonatomic, assign) YCTemperatureFlag flag;</span><br></pre></td></tr></table></figure>
+<h4 id="YCPeripheralManager"><a href="#YCPeripheralManager" class="headerlink" title="YCPeripheralManager"></a>YCPeripheralManager</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/// Delegate</span><br><span class="line">@property (nonatomic, weak) id &lt;YCPeripheralManagerDelegate&gt; delegate;</span><br><span class="line">/// Maximum number of connections allowed, max is 5, min is 1</span><br><span class="line">@property (nonatomic, assign) NSInteger maxPeripherals;</span><br><span class="line"></span><br><span class="line">/// The shared Thermometer object for the process.</span><br><span class="line">+(instancetype)shared;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">Start scan.</span><br><span class="line">    - parameters:</span><br><span class="line">    - macList: The thermometer&apos;s mac address will be connected. If this is nil, the SDK will connect the first thermometer be found.</span><br><span class="line">*/</span><br><span class="line">-(void)startScan;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line">Connect the currently connected device.</span><br><span class="line">*/</span><br><span class="line">-(void)connectPeripheral:(YCPeripheral *)peripheral;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line">Disconnect the currently connected device.</span><br><span class="line">*/</span><br><span class="line">-(void)disconnectPeripheral:(YCPeripheral *)peripheral;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line">Stop scan.</span><br><span class="line">*/</span><br><span class="line">-(void)stopScan;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line">Send specific commands to the device.</span><br><span class="line">    - parameters:</span><br><span class="line">    - type: BLENotifyType</span><br><span class="line">*/</span><br><span class="line">-(void)setNotifyToPeripheral:(YCPeripheral *)peripheral type:(YCNotifyType)type value:(NSInteger)value;</span><br></pre></td></tr></table></figure>
+<h2 id="Access-Guide"><a href="#Access-Guide" class="headerlink" title="Access Guide"></a>Access Guide</h2><h3 id="Add-SDK-reference"><a href="#Add-SDK-reference" class="headerlink" title="Add SDK reference"></a>Add SDK reference</h3><p>Add <code>YCPeripheral.framework</code> to your project.</p>
+<h3 id="Init-before-using-SDK"><a href="#Init-before-using-SDK" class="headerlink" title="Init before using SDK"></a>Init before using SDK</h3><p>Set [YCPeripheralManager shared]’s delegate and implementation YCPeripheralManagerDelegate protocol.</p>
+<h3 id="Scan-nearby-Bluetooth-devices"><a href="#Scan-nearby-Bluetooth-devices" class="headerlink" title="Scan nearby Bluetooth devices"></a>Scan nearby Bluetooth devices</h3><p>[[YCPeripheralManager shared] startScan];</p>
+<h3 id="Connect-the-Bluetooth-device"><a href="#Connect-the-Bluetooth-device" class="headerlink" title="Connect the Bluetooth device"></a>Connect the Bluetooth device</h3><p>[[YCPeripheralManager shared] connectPeripheral:peripheral];</p>
+<h3 id="Manually-release-resources-when-the-call-is-completed"><a href="#Manually-release-resources-when-the-call-is-completed" class="headerlink" title="Manually release resources when the call is completed"></a>Manually release resources when the call is completed</h3><p>[[YCPeripheralManager shared] stopScan];</p>
+<p>[[YCPeripheralManager shared] disconnectPeripheral:peripheral];</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/06/16/Android-BLE-SDK/" rel="next" title="Android BLE SDK Document">
+                <i class="fa fa-chevron-left"></i> Android BLE SDK Document
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">iKangtai</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Demo"><span class="nav-number">1.</span> <span class="nav-text">Demo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bluetooth-Low-Energy-SDK"><span class="nav-number">2.</span> <span class="nav-text">Bluetooth Low Energy SDK</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Define"><span class="nav-number">2.1.</span> <span class="nav-text">Define</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#YCPeripheralDelegate"><span class="nav-number">2.2.</span> <span class="nav-text">YCPeripheralDelegate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Class"><span class="nav-number">2.3.</span> <span class="nav-text">Class</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#YCPeripheral"><span class="nav-number">2.3.1.</span> <span class="nav-text">YCPeripheral</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#YCTemperature"><span class="nav-number">2.3.2.</span> <span class="nav-text">YCTemperature</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#YCPeripheralManager"><span class="nav-number">2.3.3.</span> <span class="nav-text">YCPeripheralManager</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Access-Guide"><span class="nav-number">3.</span> <span class="nav-text">Access Guide</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Add-SDK-reference"><span class="nav-number">3.1.</span> <span class="nav-text">Add SDK reference</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Init-before-using-SDK"><span class="nav-number">3.2.</span> <span class="nav-text">Init before using SDK</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Scan-nearby-Bluetooth-devices"><span class="nav-number">3.3.</span> <span class="nav-text">Scan nearby Bluetooth devices</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Connect-the-Bluetooth-device"><span class="nav-number">3.4.</span> <span class="nav-text">Connect the Bluetooth device</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Manually-release-resources-when-the-call-is-completed"><span class="nav-number">3.5.</span> <span class="nav-text">Manually release resources when the call is completed</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">iKangtai</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
