@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="SDK流程示意图 Demohttps://github.com/iKangtai/ScBluetoothSdkDemo_Android.git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android BLE SDK Document中文">
+<meta property="og:url" content="https://ikangtai.github.io/2020/08/12/Android-BLE-SDK-ZH/index.html">
+<meta property="og:site_name" content="爱康泰文档发布平台">
+<meta property="og:description" content="SDK流程示意图 Demohttps://github.com/iKangtai/ScBluetoothSdkDemo_Android.git">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://yunchengfile.oss-cn-beijing.aliyuncs.com/doc/android-blesdk-process-zh.png">
+<meta property="og:updated_time" content="2020-08-12T13:21:17.502Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android BLE SDK Document中文">
+<meta name="twitter:description" content="SDK流程示意图 Demohttps://github.com/iKangtai/ScBluetoothSdkDemo_Android.git">
+<meta name="twitter:image" content="https://yunchengfile.oss-cn-beijing.aliyuncs.com/doc/android-blesdk-process-zh.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://ikangtai.github.io/2020/08/12/Android-BLE-SDK-ZH/"/>
+
+
+
+
+
+  <title>Android BLE SDK Document中文 | 爱康泰文档发布平台</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">爱康泰文档发布平台</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ikangtai.github.io/2020/08/12/Android-BLE-SDK-ZH/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="iKangtai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="爱康泰文档发布平台">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android BLE SDK Document中文</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-12T01:18:08+08:00">
+                2020-08-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="SDK流程示意图"><a href="#SDK流程示意图" class="headerlink" title="SDK流程示意图"></a>SDK流程示意图</h2><p><img src="https://yunchengfile.oss-cn-beijing.aliyuncs.com/doc/android-blesdk-process-zh.png" alt=""></p>
+<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><p><a href="https://github.com/iKangtai/ScBluetoothSdkDemo_Android.git" target="_blank" rel="noopener">https://github.com/iKangtai/ScBluetoothSdkDemo_Android.git</a></p>
+<a id="more"></a>
+<h2 id="接入指南"><a href="#接入指南" class="headerlink" title="接入指南"></a>接入指南</h2><h3 id="SDK功能"><a href="#SDK功能" class="headerlink" title="SDK功能"></a>SDK功能</h3><table>
+<thead>
+<tr>
+<th>功能项</th>
+<th>功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>扫描附近蓝牙设备</td>
+<td>扫描手机附近的蓝牙设备，每秒刷新一次设备列表</td>
+</tr>
+<tr>
+<td>连接孕橙体温计同步数据&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>连接体温计同步数据，设置体温计温度单位、时间，获取固件版本号</td>
+</tr>
+<tr>
+<td>连接孕橙额温枪同步数据&nbsp;&nbsp;</td>
+<td>连接额温枪同步数据，获取固件版本号</td>
+</tr>
+</tbody>
+</table>
+<h3 id="集成SDK"><a href="#集成SDK" class="headerlink" title="集成SDK"></a>集成SDK</h3><p>1.第一种方式，将SDK aar文件复制到项目的app/libs/目录，然后配置gradle<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">android &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        flatDir &#123;</span><br><span class="line">        dirs <span class="string">'libs'</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">    implementation(name: <span class="string">'scbluetoothlib-release-v1.0.0'</span>, ext: <span class="string">'aar'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>2.第二种方式，将Demo的ScBluetoothLib模块配置复制到项目中，然后添加实现项目（’:ScBluetoothLib’）来建立依赖关系</p>
+<h3 id="权限授予"><a href="#权限授予" class="headerlink" title="权限授予"></a>权限授予</h3><p>SDK需要宿主APP授予如下权限：  </p>
+<table>
+<thead>
+<tr>
+<th>权限</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BLUETOOTH</td>
+<td>连接蓝牙设备所需权限</td>
+</tr>
+<tr>
+<td>BLUETOOTH_ADMIN</td>
+<td>连接蓝牙设备所需权限</td>
+</tr>
+<tr>
+<td>ACCESS_COARSE_LOCATION&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>Android 7.0从安全和功耗的角度出发，BLE扫描跟定位权限绑在一起</td>
+</tr>
+<tr>
+<td>ACCESS_FINE_LOCATION</td>
+<td>Android 7.0从安全和功耗的角度出发，BLE扫描跟定位权限绑在一起</td>
+</tr>
+<tr>
+<td>READ_EXTERNAL_STORAGE</td>
+<td>读写日志文件</td>
+</tr>
+<tr>
+<td>WRITE_EXTERNAL_STORAGE</td>
+<td>读写日志文件</td>
+</tr>
+</tbody>
+</table>
+<p>下面给出AndroidManifest.xml清单文件示例：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;manifest ……&gt;</span><br><span class="line">&lt;uses-permission android:name=<span class="string">"android.permission.BLUETOOTH"</span> /&gt;</span><br><span class="line">&lt;uses-permission android:name=<span class="string">"android.permission.BLUETOOTH_ADMIN"</span> /&gt;</span><br><span class="line">&lt;uses-permission android:name=<span class="string">"android.permission.ACCESS_COARSE_LOCATION"</span>/&gt;</span><br><span class="line">&lt;uses-permission android:name=<span class="string">"android.permission.ACCESS_FINE_LOCATION"</span> /&gt;</span><br><span class="line">&lt;uses-permission android:name=<span class="string">"android.permission.READ_EXTERNAL_STORAGE"</span> /&gt;</span><br><span class="line">&lt;uses-permission android:name=<span class="string">"android.permission.WRITE_EXTERNAL_STORAGE"</span> /&gt;</span><br><span class="line">&lt;application ……&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="初始化SDK"><a href="#初始化SDK" class="headerlink" title="初始化SDK"></a>初始化SDK</h3><p>使用SDK之前，需要在宿主应用UI线程中调用初始化函数，后面相关回调函数也都会在UI线程：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ScPeripheralManager.getInstance().init(getContext());</span><br></pre></td></tr></table></figure></p>
+<h3 id="扫描附近蓝牙设备"><a href="#扫描附近蓝牙设备" class="headerlink" title="扫描附近蓝牙设备"></a>扫描附近蓝牙设备</h3><p>扫描方法是一个持续的过程，每秒返回一次最新设备列表，需要在扫描完成后手动调用scPeripheralManager.stopScan()<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> (!checkBleFeatures()) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    scPeripheralManager.startScan(<span class="keyword">new</span> ScanResultListener() &#123;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">          * 扫描附近的设备时，通过此方法调用设备列表。</span></span><br><span class="line"><span class="comment">          * 该方法调用将每秒触发一次，直到调用stopScanDevice方法为止。</span></span><br><span class="line"><span class="comment">          * <span class="doctag">@param</span> deviceList</span></span><br><span class="line"><span class="comment">          */</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onScannerResult</span><span class="params">(List&lt;ScPeripheral&gt; deviceList)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">```  </span><br><span class="line">  </span><br><span class="line">在开始扫描之前，需要检查<span class="number">6.0</span>以上的定位服务开关，<span class="number">6.0</span>以上的系统的定位权限以及蓝牙开关，具体实现方法可以看Demo中checkBleFeatures()</span><br><span class="line">```java </span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">checkBleFeatures</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//Check Bluetooth Location Service</span></span><br><span class="line">        <span class="keyword">if</span> (!BleTools.isLocationEnable(getContext())) &#123;</span><br><span class="line">            Intent locationIntent = <span class="keyword">new</span> Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);</span><br><span class="line">            startActivityForResult(locationIntent, REQUEST_LOCATION_SETTINGS);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//Check Bluetooth location permission</span></span><br><span class="line">        <span class="keyword">if</span> (!BleTools.checkBlePermission(getContext())) &#123;</span><br><span class="line">            XXPermissions.with(getActivity())</span><br><span class="line">                    .permission(Permission.Group.LOCATION)</span><br><span class="line">                    .request(callback);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//Check the Bluetooth switch</span></span><br><span class="line">        <span class="keyword">if</span> (!BleTools.checkBleEnable()) &#123;</span><br><span class="line">            Intent intent = <span class="keyword">new</span> Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);</span><br><span class="line">            startActivityForResult(intent, REQUEST_BLE_SETTINGS_CODE);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="连接蓝牙设备"><a href="#连接蓝牙设备" class="headerlink" title="连接蓝牙设备"></a>连接蓝牙设备</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">ReceiveDataListenerAdapter receiveDataListenerAdapter = <span class="keyword">new</span> ReceiveDataListenerAdapter() &#123;</span><br><span class="line">      <span class="comment">/**</span></span><br><span class="line"><span class="comment">       *</span></span><br><span class="line"><span class="comment">       * <span class="doctag">@param</span> macAddress</span></span><br><span class="line"><span class="comment">       * <span class="doctag">@param</span> 扫描到设备列表，每秒返回一次最新设备列表</span></span><br><span class="line"><span class="comment">       */</span></span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceiveData</span><span class="params">(String macAddress, List&lt;ScPeripheralData&gt; scPeripheralDataList)</span> </span>&#123;</span><br><span class="line">          appendConsoleContent(<span class="string">"New data received "</span> + macAddress);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">/**</span></span><br><span class="line"><span class="comment">        * 连接的设备发生错误时回调方法.</span></span><br><span class="line"><span class="comment">        *</span></span><br><span class="line"><span class="comment">        * <span class="doctag">@param</span> macAddress</span></span><br><span class="line"><span class="comment">        * <span class="doctag">@param</span> code errorCode ,see&#123;<span class="doctag">@link</span> com.ikangtai.bluetoothsdk.util.BleCode&#125;</span></span><br><span class="line"><span class="comment">        * <span class="doctag">@param</span> msg errorMsg</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceiveError</span><span class="params">(String macAddress, <span class="keyword">int</span> code, String msg)</span> </span>&#123;</span><br><span class="line">          LogUtils.d(<span class="string">"onReceiveError:"</span> + code + <span class="string">"  "</span> + msg);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">/**</span></span><br><span class="line"><span class="comment">        * 当连接设备的状态更改时，将调用此方法。</span></span><br><span class="line"><span class="comment">        *</span></span><br><span class="line"><span class="comment">        * <span class="doctag">@param</span> macAddress</span></span><br><span class="line"><span class="comment">        * <span class="doctag">@param</span> state connect state</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onConnectionStateChange</span><span class="params">(String macAddress, <span class="keyword">int</span> state)</span> </span>&#123;</span><br><span class="line">          <span class="keyword">if</span> (state == BluetoothProfile.STATE_CONNECTED) &#123;</span><br><span class="line">             </span><br><span class="line">          &#125; <span class="keyword">else</span> <span class="keyword">if</span> (state == BluetoothProfile.STATE_DISCONNECTED) &#123;</span><br><span class="line">              </span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">/**</span></span><br><span class="line"><span class="comment">        *</span></span><br><span class="line"><span class="comment">        * <span class="doctag">@param</span> macAddress</span></span><br><span class="line"><span class="comment">        * <span class="doctag">@param</span> 指令类型，type see &#123;<span class="doctag">@link</span> com.ikangtai.bluetoothsdk.BleCommand&#125;</span></span><br><span class="line"><span class="comment">        * <span class="doctag">@param</span> 结果执行命令返回的状态将返回true或false。</span></span><br><span class="line"><span class="comment">        * <span class="doctag">@param</span> 通过执行命令返回的结果值。</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceiveCommandData</span><span class="params">(String macAddress, <span class="keyword">int</span> type, <span class="keyword">boolean</span> state, String value)</span> </span>&#123;</span><br><span class="line">          LogUtils.d(<span class="string">"onReceiveCommandData:"</span> + type + <span class="string">"  "</span> + state + <span class="string">" "</span> + value);</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">scPeripheralManager.connectPeripheral(macAddress, receiveDataListenerAdapter);</span><br></pre></td></tr></table></figure>
+<p>使用完毕手动断开连接释放资源</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scPeripheralManager.stopScan();</span><br><span class="line">scPeripheralManager.disconnectPeripheral();</span><br></pre></td></tr></table></figure>
+<h3 id="与设备交互"><a href="#与设备交互" class="headerlink" title="与设备交互"></a>与设备交互</h3><p>指令通过scPeripheralManager.sendPeripheralCommand(macAddress, BleCommand)方式调用，会在ReceiveDataListener.onReceiveCommandData(String macAddress, int type, boolean state, String value)收到发送指令结果。  </p>
+<p>获取设备体温数据<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scPeripheralManager.sendPeripheralCommand(macAddress, BleCommand.GET_DEVICE_DATA);</span><br></pre></td></tr></table></figure></p>
+<p>同步系统时间给设备</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scPeripheralManager.sendPeripheralCommand(macAddress, BleCommand.SYNC_TIME);</span><br></pre></td></tr></table></figure>
+<p>修改设备温度摄氏度单位</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scPeripheralManager.sendPeripheralCommand(macAddress, BleCommand.SYNC_THERMOMETER_UNIT_C);</span><br></pre></td></tr></table></figure>
+<p>修改设备温度华氏度单位</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scPeripheralManager.sendPeripheralCommand(macAddress, BleCommand.SYNC_THERMOMETER_UNIT_F);</span><br></pre></td></tr></table></figure>
+<p>SDK支持的指令列表:</p>
+<table>
+<thead>
+<tr>
+<th>返回码</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SEND_TEMP_ACK = -1</td>
+<td>发送已接收温度条数指令； 外部不可用（sdk内部已处理）</td>
+</tr>
+<tr>
+<td>SYNC_THERMOMETER_UNIT_C = 0 &nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>体温计单位设置成摄氏度</td>
+</tr>
+<tr>
+<td>SYNC_THERMOMETER_UNIT_F = 1</td>
+<td>体温计单位设置成华氏度</td>
+</tr>
+<tr>
+<td>SYNC_TIME = 2</td>
+<td>与体温计同步系统时间</td>
+</tr>
+<tr>
+<td>GET_TIME = 3</td>
+<td>获取体温计时间 （当前不支持）</td>
+</tr>
+<tr>
+<td>GET_POWER = 4</td>
+<td>获取体温计电量</td>
+</tr>
+<tr>
+<td>GET_FIRMWARE_VERSION = 5</td>
+<td>获取体温计固件版本号</td>
+</tr>
+<tr>
+<td>GET_DEVICE_DATA = 6</td>
+<td>获取体温计内数据（只能获取到一次）</td>
+</tr>
+<tr>
+<td>GET_EWQ_FIRMWARE_VERSION = 7</td>
+<td>获取额温枪版本号</td>
+</tr>
+<tr>
+<td>GET_EWQ_DEVICE_DATA = 8</td>
+<td>获取额温枪数据</td>
+</tr>
+</tbody>
+</table>
+<p>体温计支持指令集：{SEND_TEMP_ACK, SYNC_THERMOMETER_UNIT_C, SYNC_THERMOMETER_UNIT_F, SYNC_TIME, GET_FIRMWARE_VERSION, GET_DEVICE_DATA}<br>额温枪支持指令集：{GET_EWQ_FIRMWARE_VERSION, GET_EWQ_DEVICE_DATA}  </p>
+<h3 id="混淆配置"><a href="#混淆配置" class="headerlink" title="混淆配置"></a>混淆配置</h3><p>如果您的应用使用了代码混淆，请添加如下配置，以避免SDK被错误混淆导致SDK不可用。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-dontwarn  com.ikangtai.bluetoothsdk.**</span><br><span class="line">-keep <span class="class"><span class="keyword">class</span> <span class="title">com</span>.<span class="title">ikangtai</span>.<span class="title">bluetoothsdk</span>.** </span>&#123;*;&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="查看日志"><a href="#查看日志" class="headerlink" title="查看日志"></a>查看日志</h3><p>可以通过调用如下方法控制SDK运行调试日志是否输出、输出路径，默认情况下SDK运行调试日志打开。用户可以手动关闭。<br>也可以通过Locat过滤”sc-ble-log”Tag显示SDK特定日志。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 配置Log文件路径</span></span><br><span class="line"><span class="comment"> * 1. &#123;<span class="doctag">@link</span> Config.Builder#logWriter(Writer)&#125;</span></span><br><span class="line"><span class="comment"> * 2. &#123;<span class="doctag">@link</span> Config.Builder#logFilePath(String)&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">LogUtils.LOG_SWITCH=<span class="keyword">true</span>;</span><br><span class="line">Config config = <span class="keyword">new</span> Config.Builder().logWriter(logWriter).build();</span><br><span class="line"><span class="comment">//Config config = new Config.Builder().logFilePath(logFilePath).build();</span></span><br><span class="line">scPeripheralManager.init(getContext(), config);</span><br></pre></td></tr></table></figure>
+<h3 id="错误码说明"><a href="#错误码说明" class="headerlink" title="错误码说明"></a>错误码说明</h3><p>每次调用SDK接口时，可能获得正确或错误的返回码，开发者可以根据返回码信息调试接口，排查错误。</p>
+<table>
+<thead>
+<tr>
+<th>返回码</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>未知错误，sdk内部无法处理错误</td>
+</tr>
+<tr>
+<td>-2</td>
+<td>macAddress错误</td>
+</tr>
+<tr>
+<td>-3</td>
+<td>系统定位开关未打开</td>
+</tr>
+<tr>
+<td>-4</td>
+<td>App缺少定位权限</td>
+</tr>
+<tr>
+<td>-5</td>
+<td>蓝牙未打开</td>
+</tr>
+<tr>
+<td>-6</td>
+<td>设备当前不支持此命令</td>
+</tr>
+<tr>
+<td>-7</td>
+<td>当前设备未连接</td>
+</tr>
+<tr>
+<td>-8</td>
+<td>当前连接设备数量超过上限（最多5个）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h3><ul>
+<li>为什么连接体温计后，没有发送SYNC_DATA指令，也会收到onReceveData回调<blockquote>
+<p>SDK内部在连接体温计成功后，会主动通过”SYNC_DATA指令”获取一次离线数据，通过onReceveData回调，并且在获取数据结束后通过”SYNC_TIME指令”给体温计同步系统时间</p>
+</blockquote>
+</li>
+<li>SDK指令调用时序<blockquote>
+<p>当体温计未连接时，发送指令会直接返回错误码。当在连接过程中发送指令，会在连接成功后调用指令队列中的指令。SDK每次处理一条指令，同时发送多条相同指令，SDK只执行一次。同时发送多条不同指令，SDK会存到指令队列中，依次执行。</p>
+</blockquote>
+</li>
+<li>ACK指令含义<blockquote>
+<p>当收到温度数据时，SDK需要回复体温计这个”SYNC_ACK指令”，并带上当前收到的条数。当同步的温度数据大于10时，会分成10条数据一组。正常是SDK内部处理这条指令，不需要额外处理。SDK发送这条指令，可能造成收到重复的温度数据。</p>
+</blockquote>
+</li>
+<li>SDK操作需要在UI线程<blockquote>
+<p>目前SDK向外回调数据时，会主动切到UI线程</p>
+</blockquote>
+</li>
+<li>设置温度单位失败，同步时间失败<blockquote>
+<p>发送指令失败一般是出现体温计还未连接，或者连接不稳定的情况出现，建议查看SDK日志输出排查问题</p>
+</blockquote>
+</li>
+<li>体温计始终同步重复温度数据<blockquote>
+<p>体温计内有异常的温度数据，造成SDK处理温度条数出现错误Case,可以联系SDK提供方携带,注意携带日志文件。</p>
+</blockquote>
+<h2 id="SDK介绍"><a href="#SDK介绍" class="headerlink" title="SDK介绍"></a>SDK介绍</h2></li>
+</ul>
+<h3 id="ScPeripheralManager"><a href="#ScPeripheralManager" class="headerlink" title="ScPeripheralManager"></a>ScPeripheralManager</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ScPeripheralManager</span> </span>&#123;</span><br><span class="line">   </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 开始扫描附近的设备，并通过这个方法返回 &#123;<span class="doctag">@link</span> ScanResultListener#onScannerResult(List)&#125;.</span></span><br><span class="line"><span class="comment">     * 该方法调用将每秒触发一次，直到调用&#123;<span class="doctag">@link</span> #stopScan()&#125;方法为止。</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> scanResultListener</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">startScan</span><span class="params">(ScanResultListener scanResultListener)</span> </span>&#123;</span><br><span class="line">        BleManager.getInstance().startScanAllDevice(scanResultListener);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 停止扫描设备</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">stopScan</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        BleManager.getInstance().stopScanDevice();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 将listener添加到将在设备连接期间发送事件的一组侦听器。</span></span><br><span class="line"><span class="comment">     * 当您想断开设备的连接时，需要主动调用&#123;<span class="doctag">@link</span> ScPeripheralManager＃removeReceiveDataListener（ReceiveDataListener）&#125;</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> receiveDataListener将被添加到&#123;<span class="doctag">@link</span> com.ikangtai.bluetoothsdk.BleManager&#125;的当前侦听器集中的侦听器。</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addReceiveDataListener</span><span class="params">(ReceiveDataListener receiveDataListener)</span> </span>&#123;</span><br><span class="line">        BleManager.getInstance().addReceiveDataListener(receiveDataListener);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 从集合中删除一个listener，监听&#123;<span class="doctag">@link</span> com.ikangtai.bluetoothsdk.BleManager&#125;的数据更新。</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> receiveDataListener listener将从&#123;<span class="doctag">@link</span> com.ikangtai.bluetoothsdk.BleManager&#125;的当前更新监听器集中删除。</span></span><br><span class="line"><span class="comment">     *                         </span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeReceiveDataListener</span><span class="params">(ReceiveDataListener receiveDataListener)</span> </span>&#123;</span><br><span class="line">        BleManager.getInstance().removeReceiveDataListener(receiveDataListener);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 连接设备，需要设置全局Listener&#123;<span class="doctag">@link</span> #addReceiveDataListener（ReceiveDataListener）&#125;接收数据更新。</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> macAddress</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">connectPeripheral</span><span class="params">(String macAddress)</span> </span>&#123;</span><br><span class="line">        BleManager.getInstance().startConnectDevice(macAddress, <span class="keyword">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 连接设备，将侦听器添加到侦听器集</span></span><br><span class="line"><span class="comment">     * 接收&#123;<span class="doctag">@link</span> com.ikangtai.bluetoothsdk.BleManager&#125;数据更新事件。</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> macAddress</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> receiveDataListener</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">connectPeripheral</span><span class="params">(String macAddress, ReceiveDataListener receiveDataListener)</span> </span>&#123;</span><br><span class="line">        BleManager.getInstance().startConnectDevice(macAddress, receiveDataListener);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 发送指令</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> type</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sendPeripheraleCommand</span><span class="params">(String macAddress, <span class="keyword">int</span> type)</span> </span>&#123;</span><br><span class="line">        BleManager.getInstance().sendDeviceCommand(macAddress, type);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取设备连接状态</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> macAddress</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> either one of state &#123;<span class="doctag">@link</span> android.bluetooth.BluetoothProfile &#125;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getConnectState</span><span class="params">(String macAddress)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> BleManager.getInstance().getConnectState(macAddress);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 断开设备连接</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> macAddress</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">disconnectPeripheral</span><span class="params">(String macAddress)</span> </span>&#123;</span><br><span class="line">        BleManager.getInstance().disconnect(macAddress);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">disconnectPeripheral</span><span class="params">(String macAddress, ReceiveDataListener receiveDataListener)</span> </span>&#123;</span><br><span class="line">        BleManager.getInstance().disconnect(macAddress, receiveDataListener);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 断开所有的设备</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">disconnectPeripheral</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        BleManager.getInstance().disconnect();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/06/17/iOS-BLE-SDK/" rel="next" title="iOS BLE SDK Document">
+                <i class="fa fa-chevron-left"></i> iOS BLE SDK Document
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">iKangtai</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SDK流程示意图"><span class="nav-number">1.</span> <span class="nav-text">SDK流程示意图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Demo"><span class="nav-number">2.</span> <span class="nav-text">Demo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接入指南"><span class="nav-number">3.</span> <span class="nav-text">接入指南</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SDK功能"><span class="nav-number">3.1.</span> <span class="nav-text">SDK功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集成SDK"><span class="nav-number">3.2.</span> <span class="nav-text">集成SDK</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#权限授予"><span class="nav-number">3.3.</span> <span class="nav-text">权限授予</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化SDK"><span class="nav-number">3.4.</span> <span class="nav-text">初始化SDK</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扫描附近蓝牙设备"><span class="nav-number">3.5.</span> <span class="nav-text">扫描附近蓝牙设备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连接蓝牙设备"><span class="nav-number">3.6.</span> <span class="nav-text">连接蓝牙设备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#与设备交互"><span class="nav-number">3.7.</span> <span class="nav-text">与设备交互</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#混淆配置"><span class="nav-number">3.8.</span> <span class="nav-text">混淆配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看日志"><span class="nav-number">3.9.</span> <span class="nav-text">查看日志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#错误码说明"><span class="nav-number">3.10.</span> <span class="nav-text">错误码说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见问题"><span class="nav-number">3.11.</span> <span class="nav-text">常见问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SDK介绍"><span class="nav-number">4.</span> <span class="nav-text">SDK介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ScPeripheralManager"><span class="nav-number">4.1.</span> <span class="nav-text">ScPeripheralManager</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">iKangtai</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
